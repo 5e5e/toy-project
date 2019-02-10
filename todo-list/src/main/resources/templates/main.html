@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>toy-project 1</h1>
+    <h2>Todo List</h2>
+</div>
+<div>
+    <h3>할 일 입력</h3>
+</div>
+<div>
+    <form action="/add" method="post">
+        <input type="text" name="todo"> <br>
+    </form>
+</div>
+<div><h3>할 일들</h3>
+    <tr th:each="list, index: ${todoList}">
+        <td th:text="${index.current}"/>
+        <br>
+    </tr>
+</div>
+</body>
+</html>
