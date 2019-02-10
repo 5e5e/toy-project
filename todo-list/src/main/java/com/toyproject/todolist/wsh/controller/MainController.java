@@ -23,4 +23,5 @@ public class MainController {
 		todoList.add(todo);
 		return "redirect:/";
 	}
+
 }
