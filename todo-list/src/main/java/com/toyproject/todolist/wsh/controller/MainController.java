@@ -15,15 +15,12 @@ public class MainController {
 	@GetMapping("")
 	public String main(Model model) {
 		model.addAttribute("todoList", todoList);
-		return "main.html";
+		return "main";
 	}
 
 	@PostMapping("/add")
 	public String add(String todo) {
 		todoList.add(todo);
-		for (String i : todoList) {
-			System.out.println("list" + i);
-		}
 		return "redirect:/";
 	}
 }
