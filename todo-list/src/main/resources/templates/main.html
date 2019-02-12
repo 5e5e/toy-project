@@ -20,8 +20,21 @@
     </form>
 </div>
 <div><h3>할 일들</h3>
-    <tr th:each="list, index: ${todoList}">
-        <td th:text="${index.current}"/>
+    <tr th:each="a, b: ${todoList}">
+        <td th:text="${a}"/>
+        <!--변수 값을 주소값에 담는 방식-->
+        <form>
+            <button type="submit" th:formmethod="post" th:formaction="@{/delete/{index}(index=${b.index})}">삭제
+            </button>
+            <input type="hidden" name="_method" value="delete">
+        </form>
+        <form>
+            <button type="submit" th:formmethod="post" th:formaction="@{/edit/{index}(index=${b.index})}">수정
+            </button>
+            <input type="hidden" name="_method" value="put">
+        </form>
+        <!--변수 값을 폼에 담는 방식-->
+        <!--<button type="submit" th:formmethod="post" th:formaction="@{/delete/index(index=${b.index})}">삭제</button>-->
         <br>
     </tr>
 </div>
