@@ -22,7 +22,6 @@
 <div><h3>할 일들</h3>
     <tr th:each="a, b: ${todoList}">
         <td th:text="${a.todo}"/>
-        <!--<td th:text="${b}"/>-->
         <form>
             <button type="submit" th:formmethod="post" th:formaction="@{/delete/{index}(index=${a.id})}">삭제
             </button>

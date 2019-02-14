@@ -1,6 +1,6 @@
 package com.toyproject.todolist.wsh.controller;
 
-import com.toyproject.todolist.wsh.model.Todo;
+import com.toyproject.todolist.wsh.model.Test;
 import com.toyproject.todolist.wsh.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,31 +17,37 @@ public class MainController {
 
 	@GetMapping("")
 	public String main(Model model) {
-		List<Todo> todos = todoRepository.findAll();
+		List<Test> todos = todoRepository.findAll();
 		model.addAttribute("todoList", todos);
 		return "main";
 	}
 
 	@PostMapping("/add")
 	public String add(String todo) {
-		todoRepository.save(new Todo(todo));
+		todoRepository.save(new Test(todo));
 		return "redirect:/";
 	}
 
 	@PostMapping("/edit/{id}")
-	public String edit(String editedTodo, @PathVariable int id) {
+	public String edit(String editedTodo, @PathVariable Long id) {
+		Optional<Test>todo = todoRepository.findById(id);
+		Test test = todo.get();
+		test.setTodo(editedTodo);
+		todoRepository.save(test);
 		return "redirect:/";
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public String delete(@PathVariable Long id) {
-		Optional<Todo> todo = todoRepository.findById(id);
+		Optional<Test> todo = todoRepository.findById(id);
 		todoRepository.delete(todo.get());
 		return "redirect:/";
 	}
 
 	@PutMapping("/edit/{id}")
-	public String edit(@PathVariable int id, Model model) {
+	public String edit(@PathVariable Long id, Model model) {
+		Optional<Test> todo = todoRepository.findById(id);
+		model.addAttribute("editTodo", todo.get());
 		return "reform";
 	}
 }

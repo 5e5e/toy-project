@@ -15,8 +15,8 @@
     <h3>할 일 입력</h3>
 </div>
 <div>
-    <form th:action="@{/edit/{index}(index=${index})}" method="post">
-        <input type="text" th:value="${editTodo}" name="editedTodo">
+    <form th:action="@{/edit/{index}(index=${editTodo.id})}" method="post">
+        <input type="text" th:value="${editTodo.todo}" name="editedTodo">
     </form>
 </div>
 </body>

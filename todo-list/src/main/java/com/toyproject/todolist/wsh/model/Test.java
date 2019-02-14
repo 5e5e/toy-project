@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Todo {
+public class Test {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -12,10 +12,10 @@ public class Todo {
 	@Column
 	private String todo;
 
-	public Todo() {
+	public Test() {
 	}
 
-	public Todo(String todo) {
+	public Test(String todo) {
 		this.todo = todo;
 	}
 
@@ -38,8 +38,8 @@ public class Todo {
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof Todo)) return false;
-		Todo todo1 = (Todo) o;
+		if (!(o instanceof Test)) return false;
+		Test todo1 = (Test) o;
 		return Objects.equals(id, todo1.id) &&
 				Objects.equals(todo, todo1.todo);
 	}
@@ -51,7 +51,7 @@ public class Todo {
 
 	@Override
 	public String toString() {
-		return "Todo{" +
+		return "Test{" +
 				"id=" + id +
 				", todo='" + todo + '\'' +
 				'}';
