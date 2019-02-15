@@ -56,4 +56,8 @@ public class Test {
 				", todo='" + todo + '\'' +
 				'}';
 	}
+
+	public void editTodo(String editedTodo) {
+		this.todo = editedTodo;
+	}
 }

@@ -30,9 +30,10 @@ public class MainController {
 
 	@PostMapping("/edit/{id}")
 	public String edit(String editedTodo, @PathVariable Long id) {
-		Optional<Test>todo = todoRepository.findById(id);
+		System.out.println("editedTodo= " + editedTodo);
+		Optional<Test> todo = todoRepository.findById(id);
 		Test test = todo.get();
-		test.setTodo(editedTodo);
+		test.editTodo(editedTodo);
 		todoRepository.save(test);
 		return "redirect:/";
 	}
