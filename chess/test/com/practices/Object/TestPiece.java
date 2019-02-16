@@ -1,6 +1,5 @@
-package com.paractice;
+package com.practices.Object;
 
-import com.practices.Object.Piece;
 import com.practices.exception.WrongPieceException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,12 +9,12 @@ import org.slf4j.LoggerFactory;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class PieceTest {
-	private static Logger logger = LoggerFactory.getLogger(PieceTest.class);
+public class TestPiece {
+	private static Logger logger = LoggerFactory.getLogger(TestPiece.class);
 	private Piece piece;
 
 	@BeforeEach
-	public void setUp() {
+	public void setup() {
 		piece = new Piece();
 	}
 

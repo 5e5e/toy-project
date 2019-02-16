@@ -168,6 +168,4 @@ public class Piece {
 				"piece='" + piece + '\'' +
 				'}';
 	}
-
-
 }
