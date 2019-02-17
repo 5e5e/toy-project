@@ -20,9 +20,13 @@ public class Board {
 
 	public String result() {
 		StringBuilder stringBuilder = new StringBuilder();
-		for (Rank index : ranks) {
-			stringBuilder.append(index.result());
+		stringBuilder.append("  abcdefgh ");
+		stringBuilder.append("\n");
+		for (int i = ranks.size() - 1; i >= 0; i--) {
+			stringBuilder.append((i + 1) + " " + ranks.get(i).result() + " " + (i + 1));
+			stringBuilder.append("\n");
 		}
+		stringBuilder.append("  abcdefgh ");
 		return stringBuilder.toString();
 	}
 }

@@ -19,7 +19,10 @@ public class TestBoard {
 	@Test
 	public void create() {
 		board.create();
-		assertEquals("rnbqkbnrpppppppp                                RNBQKBNRPPPPPPPP", board.result());
+		assertEquals("  abcdefgh " + "\n" + "8 PPPPPPPP 8" + "\n" + "7 RNBQKBNR 7" + "\n"
+				+ "6          6" + "\n" + "5          5" + "\n" + "4          4" + "\n" +
+				"3          3" + "\n" + "2 pppppppp 2" + "\n" + "1 rnbqkbnr 1" + "\n"
+				+ "  abcdefgh ", board.result());
 	}
 
 }

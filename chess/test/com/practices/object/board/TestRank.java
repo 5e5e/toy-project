@@ -8,35 +8,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestRank {
 	private static final Logger logger = LoggerFactory.getLogger(TestRank.class);
-	private Rank rank;
 
 	@Test
 	public void createWhitePawnRank() {
-		rank.createWhitePawnRank();
-		assertEquals("pppppppp", rank.result());
+		assertEquals("pppppppp", Rank.createWhitePawnRank().result());
 	}
 
 	@Test
 	public void createWhiteOthersPiecesRank() {
-		rank.createWhiteOthersPiecesRank();
-		assertEquals("rnbqkbnr", rank.result());
+		assertEquals("rnbqkbnr", Rank.createWhiteOthersPiecesRank().result());
 	}
 
 	@Test
 	public void createBlackPawnRank() {
-		rank.createBlackPawnRank();
-		assertEquals("PPPPPPPP", rank.result());
+		assertEquals("PPPPPPPP", Rank.createBlackPawnRank().result());
 	}
 
 	@Test
 	public void createBlackOthersPiecesRank() {
-		rank.createBlackOthersPiecesRank();
-		assertEquals("RNBQKBNR", rank.result());
+		assertEquals("RNBQKBNR", Rank.createBlackOthersPiecesRank().result());
 	}
 
 	@Test
 	public void createBlankRank() {
-		rank.createBlankRank();
-		assertEquals("                                ", rank.result());
+		assertEquals("        ", Rank.createBlankRank().result());
 	}
 }
