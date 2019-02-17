@@ -8,15 +8,58 @@ import java.util.List;
 public class Rank {
 	private List<Piece> pieces = new ArrayList<>();
 
-	public Rank() {
+	private Rank() {
 
 	}
 
-	public List<Piece> createWhitePawnRank() {
+	public static Rank createWhiteOthersPiecesRank() {
+		Rank rank = new Rank();
+		rank.add(Rook.createWhiteRook());
+		rank.add(Knight.createWhiteKnight());
+		rank.add(Bishop.createWhiteBishop());
+		rank.add(Queen.createWhiteQueen());
+		rank.add(King.createWhiteKing());
+		rank.add(Bishop.createWhiteBishop());
+		rank.add(Knight.createWhiteKnight());
+		rank.add(Rook.createWhiteRook());
+		return rank;
+	}
+
+	public static Rank createBlackOthersPiecesRank() {
+		Rank rank = new Rank();
+		rank.add(Rook.createBlackRook());
+		rank.add(Knight.createBlackKnight());
+		rank.add(Bishop.createBlackBishop());
+		rank.add(Queen.createBlackQueen());
+		rank.add(King.createBlackKing());
+		rank.add(Bishop.createBlackBishop());
+		rank.add(Knight.createBlackKnight());
+		rank.add(Rook.createBlackRook());
+		return rank;
+	}
+
+	public static Rank createWhitePawnRank() {
+		Rank rank = new Rank();
 		for (int i = 0; i < 8; i++) {
-			pieces.add(Pawn.createWhitePawn());
+			rank.add(Pawn.createWhitePawn());
 		}
-		return pieces;
+		return rank;
+	}
+
+	public static Rank createBlankRank() {
+		Rank rank = new Rank();
+		for (int i = 0; i < 8; i++) {
+			rank.add(Blank.create());
+		}
+		return rank;
+	}
+
+	public static Rank createBlackPawnRank() {
+		Rank rank = new Rank();
+		for (int i = 0; i < 8; i++) {
+			rank.add(Pawn.createBlackPawn());
+		}
+		return rank;
 	}
 
 	public String result() {
@@ -27,41 +70,7 @@ public class Rank {
 		return stringBuilder.toString();
 	}
 
-	public List<Piece> createWhiteOthersPiecesRank() {
-		pieces.add(Rook.createWhiteRook());
-		pieces.add(Knight.createWhiteKnight());
-		pieces.add(Bishop.createWhiteBishop());
-		pieces.add(Queen.createWhiteQueen());
-		pieces.add(King.createWhiteKing());
-		pieces.add(Bishop.createWhiteBishop());
-		pieces.add(Knight.createWhiteKnight());
-		pieces.add(Rook.createWhiteRook());
-		return pieces;
-	}
-
-	public List<Piece> createBlackPawnRank() {
-		for (int i = 0; i < 8; i++) {
-			pieces.add(Pawn.createBlackPawn());
-		}
-		return pieces;
-	}
-
-	public List<Piece> createBlackOthersPiecesRank() {
-		pieces.add(Rook.createBlackRook());
-		pieces.add(Knight.createBlackKnight());
-		pieces.add(Bishop.createBlackBishop());
-		pieces.add(Queen.createBlackQueen());
-		pieces.add(King.createBlackKing());
-		pieces.add(Bishop.createBlackBishop());
-		pieces.add(Knight.createBlackKnight());
-		pieces.add(Rook.createBlackRook());
-		return pieces;
-	}
-
-	public List<Piece> createBlankRank() {
-		for (int i = 0; i < 8; i++) {
-			pieces.add(Blank.create());
-		}
-		return pieces;
+	private void add(Piece piece) {
+		pieces.add(piece);
 	}
 }
