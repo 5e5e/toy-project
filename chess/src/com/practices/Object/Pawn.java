@@ -19,7 +19,7 @@ public class Pawn extends Piece {
 	public static Piece create(String color) {
 		if (color.equals("white") || color.equals("black"))
 			return color.equals("white") ? new Pawn(color, "p") : new Pawn(color, "P");
-		throw new WrongPieceException("폰 기물만 생성할 수 있습니다");
+		throw new WrongPieceException("하얀색 검은색 폰 기물만 생성할 수 있습니다");
 	}
 
 	public static Piece createWhite() {
