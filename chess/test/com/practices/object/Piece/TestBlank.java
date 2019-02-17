@@ -1,4 +1,4 @@
-package com.practices.Object;
+package com.practices.object.Piece;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

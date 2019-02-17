@@ -1,4 +1,4 @@
-package com.practices.Object;
+package com.practices.object.Piece;
 
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
@@ -33,7 +33,7 @@ public class King extends Piece {
 
 	public static Piece create(String color, String piece) {
 		if (piece.equals(whiteKing) || piece.equals(blackKing))
-			if (color.equals(white) || color.equals("black")) {
+			if (color.equals(white) || color.equals(black)) {
 				return color.equals(white) ? new King(white, whiteKing) : new King(black, blackKing);
 			} else {
 				throw new WrongPieceColorException("하얀색 또는 검은색 기물만 생성할 수 있습니다");

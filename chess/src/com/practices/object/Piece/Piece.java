@@ -1,4 +1,4 @@
-package com.practices.Object;
+package com.practices.object.Piece;
 
 import com.practices.exception.WrongPieceException;
 
@@ -44,5 +44,9 @@ public abstract class Piece {
 		return "Piece{" +
 				"piece='" + piece + '\'' +
 				'}';
+	}
+
+	public String presentation() {
+		return piece;
 	}
 }

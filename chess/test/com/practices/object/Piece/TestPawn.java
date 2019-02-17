@@ -1,4 +1,4 @@
-package com.practices.Object;
+package com.practices.object.Piece;
 
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
