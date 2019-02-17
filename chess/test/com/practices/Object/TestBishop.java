@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestBishop {
 	private static final Logger logger = LoggerFactory.getLogger(TestBishop.class);
-	private final Piece whiteTestBishop = new Piece("white", "b");
-	private final Piece blackTestBishop = new Piece("black", "B");
+	private final Piece whiteTestBishop = Bishop.createWhiteBishop();
+	private final Piece blackTestBishop = Bishop.createBlackBishop();
 
 	@Test
 	public void createWhiteTestBishop() {

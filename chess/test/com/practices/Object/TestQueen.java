@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestQueen {
 	private static final Logger logger = LoggerFactory.getLogger(TestQueen.class);
-	private final Piece whiteTestQueen = new Piece("white", "q");
-	private final Piece blackTestQueen = new Piece("black", "Q");
+	private final Piece whiteTestQueen = Queen.createWhiteQueen();
+	private final Piece blackTestQueen = Queen.createBlackQueen();
 
 	@Test
 	public void createWhiteTestQueen() {

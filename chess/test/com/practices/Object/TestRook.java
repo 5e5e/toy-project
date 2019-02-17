@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestRook {
 	private static final Logger logger = LoggerFactory.getLogger(TestRook.class);
-	private final Piece whiteRook = new Piece("white", "r");
-	private final Piece blackRook = new Piece("black", "R");
+	private final Piece whiteRook = Rook.createWhiteRook();
+	private final Piece blackRook = Rook.createBlackRook();
 
 	@Test
 	public void createWhiteRook() {

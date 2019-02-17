@@ -1,7 +1,7 @@
 package com.practices.Object;
 
 public class Blank extends Piece {
-	public Blank() {
+	private Blank() {
 		super(" ");
 	}
 
