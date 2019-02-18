@@ -1,70 +1,62 @@
 package com.practices.object.Piece;
 
+import com.practices.Color;
 import com.practices.Position;
-import com.practices.exception.WrongPieceException;
+import com.practices.Type;
 
 import java.util.Objects;
 
 public abstract class Piece {
 	private final String blank = " ";
-	private String color;
-	private String piece;
+	private Color color;
+	private Type type;
 	private Position position;
 
 	public Piece() {
 
 	}
 
-	public Piece(String piece) {
-		if (!blank.equals(piece))
-			throw new WrongPieceException("잘못된 생성 요청입니다.");
-
-		this.piece = piece;
+	public Piece(Color color, Type type) {
+		this.color = color;
+		this.type = type;
 	}
 
-	public Piece(String color, String piece) {
+	public Piece(Color color, Type type, Position position) {
 		this.color = color;
-		this.piece = piece;
-	}
-
-	public Piece(String color, String piece, Position position) {
-		this.color = color;
-		this.piece = piece;
+		this.type = type;
 		this.position = position;
+	}
+
+	public static boolean isBlack(Color color) {
+		return color.equals(Color.BLACK);
+	}
+
+	public static boolean isWhite(Color color) {
+		return color.equals(Color.WHITE);
 	}
 
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (!(o instanceof Piece)) return false;
-		Piece piece1 = (Piece) o;
-		return Objects.equals(color, piece1.color) &&
-				Objects.equals(piece, piece1.piece) &&
-				Objects.equals(position, piece1.position);
+		Piece piece = (Piece) o;
+		return color == piece.color &&
+				type == piece.type;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(color, piece, position);
+		return Objects.hash(color, type);
 	}
 
 	@Override
 	public String toString() {
 		return "Piece{" +
-				"piece='" + piece + '\'' +
+				"piece='" + type + '\'' +
 				'}';
 	}
 
-	public String presentation() {
-		return piece;
+	public Type presentation() {
+		return type;
 	}
-
-	public void move(String position) {
-
-	}
-
-	public void move(String arrive, Piece arrivePiece) {
-	}
-
-	;
 }
