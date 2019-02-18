@@ -2,6 +2,7 @@ package com.practices.object.Piece;
 
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestPawn {
 	private static Logger logger = LoggerFactory.getLogger(TestPawn.class);
-	private final Piece whitePawn = Pawn.createWhitePawn();
-	private final Piece blackPawn = Pawn.createBlackPawn();
+	private Piece whitePawn;
+	private Piece blackPawn;
+
+	@BeforeEach
+	public void setup() {
+		whitePawn = Pawn.createWhitePawn();
+		blackPawn = Pawn.createBlackPawn();
+	}
 
 	@Test
 	public void createWhitePawn() {
@@ -23,6 +30,7 @@ public class TestPawn {
 	public void createBlackPawn() {
 		assertEquals(blackPawn, Pawn.create("black"));
 	}
+
 
 	@Test
 	public void wrongColorException() {

@@ -1,11 +1,14 @@
 package com.practices.object.board;
 
 import com.practices.object.Piece.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Rank {
+	private static final Logger logger = LoggerFactory.getLogger(Rank.class);
 	private List<Piece> pieces = new ArrayList<>();
 
 	private Rank() {
@@ -72,5 +75,19 @@ public class Rank {
 
 	private void add(Piece piece) {
 		pieces.add(piece);
+	}
+
+	public Piece getPiece(int index) {
+		Piece temp = pieces.get(index);
+		pieces.set(index, Blank.create());
+		return temp;
+	}
+
+	public Piece findPiece(int index) {
+		return pieces.get(index);
+	}
+
+	public void setPiece(int index, Piece departurePiece) {
+		pieces.set(index, departurePiece);
 	}
 }

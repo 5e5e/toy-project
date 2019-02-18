@@ -1,5 +1,7 @@
 package com.practices.object.board;
 
+import com.practices.object.Piece.Pawn;
+import com.practices.object.Piece.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -23,6 +25,12 @@ public class TestBoard {
 				+ "6          6" + "\n" + "5          5" + "\n" + "4          4" + "\n" +
 				"3          3" + "\n" + "2 pppppppp 2" + "\n" + "1 rnbqkbnr 1" + "\n"
 				+ "  abcdefgh ", board.result());
+	}
+
+	@Test
+	public void findPiece() {
+		Piece newPiece = board.findPiece("a2");
+		assertEquals(Pawn.createWhitePawn(), newPiece);
 	}
 
 }

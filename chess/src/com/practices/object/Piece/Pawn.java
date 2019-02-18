@@ -1,5 +1,6 @@
 package com.practices.object.Piece;
 
+import com.practices.Position;
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
 
@@ -15,6 +16,10 @@ public class Pawn extends Piece {
 
 	private Pawn(String color, String piece) {
 		super(color, piece);
+	}
+
+	private Pawn(String color, String piece, Position position) {
+		super(color,piece,position);
 	}
 
 	public static Piece create(String color) {
@@ -39,5 +44,9 @@ public class Pawn extends Piece {
 				throw new WrongPieceColorException("하얀색 또는 검은색 기물만 생성할 수 있습니다");
 			}
 		throw new WrongPieceTypeException("폰 기물만 생성할 수 있습니다");
+	}
+
+	public static Piece createWhitePawn(Position position) {
+		return new Pawn(white, whitePawn,position);
 	}
 }
