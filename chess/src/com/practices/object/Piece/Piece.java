@@ -64,9 +64,6 @@ public abstract class Piece {
 		return Color.WHITE.equals(this.color);
 	}
 
-	public double getScore() {
-		return score;
-	}
 
 	public boolean isBlack() {
 		return Color.BLACK.equals(this.color);
@@ -83,7 +80,6 @@ public abstract class Piece {
 		List<Position> positions = this.position.getYPosition();
 		for (Position position : positions) {
 			if (pieces.contains(Pawn.create(this.color, position))) {
-				logger.debug(this +"");
 				return this.score - 0.5;
 			}
 		}
@@ -100,6 +96,5 @@ public abstract class Piece {
 
 	public void locatePosition(String arrive) {
 		this.position.setPosition(arrive);
-		logger.warn(this.position+"");
 	}
 }

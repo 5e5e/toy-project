@@ -71,7 +71,6 @@ public class Board {
 		for (Rank ranks : ranks) {
 			whitePieces.addAll(ranks.findWhitePieces());
 		}
-//		logger.debug("whitePieces : " + whitePieces);
 		return whitePieces;
 	}
 
@@ -80,13 +79,11 @@ public class Board {
 		for (Rank ranks : ranks) {
 			blackPieces.addAll(ranks.findBlackPieces());
 		}
-//		logger.debug("blackPieces : " + blackPieces);
 		return blackPieces;
 	}
 
 	public double whitePieceCalculation() {
 		List<Piece> pieces = findWhitePiece();
-//		logger.info(pieces+"");
 		double result = 0;
 		for (Piece piece : pieces) {
 			result += piece.getPoint(pieces);

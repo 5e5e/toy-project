@@ -59,9 +59,6 @@ public class Position {
 		}
 		prePositions.addAll(postPositions);
 		return prePositions;
-//		return Arrays.asList(
-//				new Position(this.x, this.y - 1),
-//				new Position(this.x, this.y + 1));
 	}
 
 	@Override
@@ -89,9 +86,5 @@ public class Position {
 	public void setPosition(String arrive) {
 		this.x = convertX(arrive);
 		this.y = convertY(arrive);
-	}
-
-	public int getX() {
-		return x;
 	}
 }
