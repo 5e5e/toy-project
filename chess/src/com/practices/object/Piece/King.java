@@ -1,22 +1,22 @@
 package com.practices.object.Piece;
 
 import com.practices.Color;
+import com.practices.Position;
 import com.practices.Type;
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
 
 public class King extends Piece {
-	private final static String white = "white";
-	private final static String black = "black";
-	private final static String whiteKing = "k";
-	private final static String blackKing = "K";
-
 	private King() {
 
 	}
 
 	private King(Color color, Type type) {
 		super(color, type);
+	}
+
+	public King(Color color, Type king, Position position) {
+		super(color, king, position);
 	}
 
 	public static Piece create(Color color) {
@@ -40,5 +40,14 @@ public class King extends Piece {
 
 	private static boolean isKing(Type type) {
 		return Type.KING.equals(type);
+	}
+
+	public static Piece createWhiteKing(String a5) {
+		return new King(Color.WHITE, Type.KING, new Position(a5));
+	}
+
+	public static Piece createBlackKing(String e8) {
+		return new King(Color.BLACK, Type.KING, new Position(e8));
+
 	}
 }

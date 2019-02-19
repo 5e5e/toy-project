@@ -10,6 +10,7 @@ import java.util.List;
 public class Rank {
 	private static final Logger logger = LoggerFactory.getLogger(Rank.class);
 	private List<Piece> pieces = new ArrayList<>();
+	private List<Piece> temps = new ArrayList<>();
 
 	private Rank() {
 
@@ -17,34 +18,34 @@ public class Rank {
 
 	public static Rank createWhiteOthersPiecesRank() {
 		Rank rank = new Rank();
-		rank.add(Rook.createWhiteRook());
-		rank.add(Knight.createWhiteKnight());
-		rank.add(Bishop.createWhiteBishop());
-		rank.add(Queen.createWhiteQueen());
-		rank.add(King.createWhiteKing());
-		rank.add(Bishop.createWhiteBishop());
-		rank.add(Knight.createWhiteKnight());
-		rank.add(Rook.createWhiteRook());
+		rank.add(Rook.createWhiteRook("a1"));
+		rank.add(Knight.createWhiteKnight("b1"));
+		rank.add(Bishop.createWhiteBishop("c1"));
+		rank.add(Queen.createWhiteQueen("d1"));
+		rank.add(King.createWhiteKing("e1"));
+		rank.add(Bishop.createWhiteBishop("f1"));
+		rank.add(Knight.createWhiteKnight("g1"));
+		rank.add(Rook.createWhiteRook("h1"));
 		return rank;
 	}
 
 	public static Rank createBlackOthersPiecesRank() {
 		Rank rank = new Rank();
-		rank.add(Rook.createBlackRook());
-		rank.add(Knight.createBlackKnight());
-		rank.add(Bishop.createBlackBishop());
-		rank.add(Queen.createBlackQueen());
-		rank.add(King.createBlackKing());
-		rank.add(Bishop.createBlackBishop());
-		rank.add(Knight.createBlackKnight());
-		rank.add(Rook.createBlackRook());
+		rank.add(Rook.createBlackRook("a8"));
+		rank.add(Knight.createBlackKnight("b8"));
+		rank.add(Bishop.createBlackBishop("c8"));
+		rank.add(Queen.createBlackQueen("d8"));
+		rank.add(King.createBlackKing("e8"));
+		rank.add(Bishop.createBlackBishop("f8"));
+		rank.add(Knight.createBlackKnight("g8"));
+		rank.add(Rook.createBlackRook("h8"));
 		return rank;
 	}
 
 	public static Rank createWhitePawnRank() {
 		Rank rank = new Rank();
 		for (int i = 0; i < 8; i++) {
-			rank.add(Pawn.createWhitePawn());
+			rank.add(Pawn.createWhitePawn(i));
 		}
 		return rank;
 	}
@@ -60,7 +61,7 @@ public class Rank {
 	public static Rank createBlackPawnRank() {
 		Rank rank = new Rank();
 		for (int i = 0; i < 8; i++) {
-			rank.add(Pawn.createBlackPawn());
+			rank.add(Pawn.createBlackPawn(i));
 		}
 		return rank;
 	}
@@ -89,5 +90,25 @@ public class Rank {
 
 	public void setPiece(int index, Piece departurePiece) {
 		pieces.set(index, departurePiece);
+	}
+
+	public List<Piece> findWhitePieces() {
+		temps.clear();
+		for (Piece piece : pieces) {
+			if (piece.isWhite()) {
+				temps.add(piece);
+			}
+		}
+		return temps;
+	}
+
+	public List<Piece> findBlackPieces() {
+		temps.clear();
+		for (Piece piece : pieces) {
+			if (piece.isBlack()) {
+				temps.add(piece);
+			}
+		}
+		return temps;
 	}
 }

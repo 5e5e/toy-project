@@ -16,14 +16,14 @@ public class Board {
 	}
 
 	public List<Rank> create() {
-		ranks.add(Rank.createWhiteOthersPiecesRank()); // 0
-		ranks.add(Rank.createWhitePawnRank()); // 1
-		ranks.add(Rank.createBlankRank()); // 2
-		ranks.add(Rank.createBlankRank()); // 3
+		ranks.add(Rank.createWhiteOthersPiecesRank());
+		ranks.add(Rank.createWhitePawnRank());
 		ranks.add(Rank.createBlankRank());
 		ranks.add(Rank.createBlankRank());
-		ranks.add(Rank.createBlackOthersPiecesRank());
+		ranks.add(Rank.createBlankRank());
+		ranks.add(Rank.createBlankRank());
 		ranks.add(Rank.createBlackPawnRank());
+		ranks.add(Rank.createBlackOthersPiecesRank());
 		return ranks;
 	}
 
@@ -48,6 +48,7 @@ public class Board {
 
 	public void move(String departure, String arrive) {
 		Piece departurePiece = getPiece(departure);
+		departurePiece.locatePosition(arrive);
 		setPiece(arrive, departurePiece);
 	}
 
@@ -65,14 +66,40 @@ public class Board {
 		rank.setPiece(x, departurePiece);
 	}
 
-	private void swap(Piece departurePiece, Piece arrivePiece) {
-		logger.debug("before departurePiece : " + departurePiece);
-		logger.debug("before arrivePiece : " + arrivePiece);
-		Piece temp = departurePiece;
-		departurePiece = arrivePiece;
-		arrivePiece = temp;
-		logger.debug("after departurePiece : " + departurePiece);
-		logger.debug("after arrivePiece : " + arrivePiece);
+	public List<Piece> findWhitePiece() {
+		List<Piece> whitePieces = new ArrayList<>();
+		for (Rank ranks : ranks) {
+			whitePieces.addAll(ranks.findWhitePieces());
+		}
+//		logger.debug("whitePieces : " + whitePieces);
+		return whitePieces;
+	}
 
+	public List<Piece> findBlackPiece() {
+		List<Piece> blackPieces = new ArrayList<>();
+		for (Rank ranks : ranks) {
+			blackPieces.addAll(ranks.findBlackPieces());
+		}
+//		logger.debug("blackPieces : " + blackPieces);
+		return blackPieces;
+	}
+
+	public double whitePieceCalculation() {
+		List<Piece> pieces = findWhitePiece();
+//		logger.info(pieces+"");
+		double result = 0;
+		for (Piece piece : pieces) {
+			result += piece.getPoint(pieces);
+		}
+		return result;
+	}
+
+	public double blackPieceCalculation() {
+		List<Piece> pieces = findBlackPiece();
+		double result = 0;
+		for (Piece piece : pieces) {
+			result += piece.getPoint(pieces);
+		}
+		return result;
 	}
 }

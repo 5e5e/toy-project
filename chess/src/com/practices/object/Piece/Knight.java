@@ -1,6 +1,7 @@
 package com.practices.object.Piece;
 
 import com.practices.Color;
+import com.practices.Position;
 import com.practices.Type;
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
@@ -12,6 +13,10 @@ public class Knight extends Piece {
 
 	private Knight(Color color, Type type) {
 		super(color, type);
+	}
+
+	public Knight(Color color , Type knight, Position position) {
+		super(color,knight,position);
 	}
 
 	public static Piece create(Color color) {
@@ -35,5 +40,14 @@ public class Knight extends Piece {
 
 	private static boolean isKnight(Type type) {
 		return Type.KNIGHT.equals(type);
+	}
+
+	public static Piece createWhiteKnight(String position) {
+		return new Knight(Color.WHITE,Type.KNIGHT, new Position(position));
+	}
+
+	public static Piece createBlackKnight(String b8) {
+		return new Knight(Color.BLACK,Type.KNIGHT, new Position(b8));
+
 	}
 }

@@ -1,6 +1,7 @@
 package com.practices.object.Piece;
 
 import com.practices.Color;
+import com.practices.Position;
 import com.practices.Type;
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
@@ -12,6 +13,10 @@ public class Queen extends Piece {
 
 	private Queen(Color color, Type type) {
 		super(color, type);
+	}
+
+	public Queen(Color color , Type queen, Position position) {
+		super(color, queen, position);
 	}
 
 	public static Piece create(Color color) {
@@ -35,5 +40,14 @@ public class Queen extends Piece {
 
 	private static boolean isQueen(Type type) {
 		return Type.QUEEN.equals(type);
+	}
+
+	public static Piece createWhiteQueen(String a4) {
+		return new Queen(Color.WHITE, Type.QUEEN, new Position(a4));
+	}
+
+	public static Piece createBlackQueen(String d8) {
+		return new Queen(Color.BLACK, Type.QUEEN, new Position(d8));
+
 	}
 }

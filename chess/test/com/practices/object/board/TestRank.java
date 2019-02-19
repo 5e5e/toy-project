@@ -31,6 +31,6 @@ public class TestRank {
 
 	@Test
 	public void createBlankRank() {
-		assertEquals("        ", Rank.createBlankRank().result());
+		assertEquals("........", Rank.createBlankRank().result());
 	}
 }

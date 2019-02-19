@@ -1,6 +1,7 @@
 package com.practices.object.Piece;
 
 import com.practices.Color;
+import com.practices.Position;
 import com.practices.Type;
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
@@ -12,6 +13,10 @@ public class Rook extends Piece {
 
 	private Rook(Color color, Type type) {
 		super(color, type);
+	}
+
+	public Rook(Color color, Type rook, Position position) {
+		super(color, rook, position);
 	}
 
 	public static Piece create(Color color) {
@@ -35,5 +40,14 @@ public class Rook extends Piece {
 
 	private static boolean isRook(Type type) {
 		return Type.ROOK.equals(type);
+	}
+
+	public static Piece createWhiteRook(String position) {
+		return new Rook(Color.WHITE, Type.ROOK, new Position(position));
+	}
+
+	public static Piece createBlackRook(String a8) {
+		return new Rook(Color.BLACK, Type.ROOK, new Position(a8));
+
 	}
 }

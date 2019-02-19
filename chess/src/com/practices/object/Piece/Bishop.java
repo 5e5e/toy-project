@@ -1,6 +1,7 @@
 package com.practices.object.Piece;
 
 import com.practices.Color;
+import com.practices.Position;
 import com.practices.Type;
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
@@ -12,6 +13,10 @@ public class Bishop extends Piece {
 
 	private Bishop(Color color, Type type) {
 		super(color, type);
+	}
+
+	public Bishop(Color color, Type bishop, Position position) {
+		super(color, bishop, position);
 	}
 
 	public static Piece create(Color color) {
@@ -35,5 +40,13 @@ public class Bishop extends Piece {
 
 	private static boolean isBishop(Type type) {
 		return Type.BISHOP.equals(type);
+	}
+
+	public static Piece createWhiteBishop(String position) {
+		return new Bishop(Color.WHITE, Type.BISHOP, new Position(position));
+	}
+
+	public static Piece createBlackBishop(String c8) {
+		return new Bishop(Color.BLACK, Type.BISHOP, new Position(c8));
 	}
 }
