@@ -41,10 +41,10 @@ public class TestPawn {
 		Piece testPawn2 = Pawn.createWhitePawn(new Position("a8"));
 		Piece testPawn3 = Pawn.createWhitePawn(new Position("h8"));
 		Piece testPawn4 = Pawn.createWhitePawn(new Position("h1"));
-		assertEquals(whitePawn, testPawn1);
-		assertEquals(whitePawn, testPawn2);
-		assertEquals(whitePawn, testPawn3);
-		assertEquals(whitePawn, testPawn4);
+		assertEquals( Pawn.createWhitePawn(new Position("a1")), testPawn1);
+		assertEquals( Pawn.createWhitePawn(new Position("a8")), testPawn2);
+		assertEquals( Pawn.createWhitePawn(new Position("h8")), testPawn3);
+		assertEquals( Pawn.createWhitePawn(new Position("h1")), testPawn4);
 	}
 
 	@Test

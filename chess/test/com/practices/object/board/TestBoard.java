@@ -1,5 +1,6 @@
 package com.practices.object.board;
 
+import com.practices.Position;
 import com.practices.object.Piece.Pawn;
 import com.practices.object.Piece.Piece;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,7 +30,7 @@ public class TestBoard {
 	@Test
 	public void findPiece() {
 		Piece newPiece = board.findPiece("a2");
-		assertEquals(Pawn.createWhitePawn(), newPiece);
+		assertEquals(Pawn.createWhitePawn(new Position("a2")), newPiece);
 	}
 
 }

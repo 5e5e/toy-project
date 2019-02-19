@@ -46,15 +46,14 @@ public abstract class Piece {
 		if (this == o) return true;
 		if (!(o instanceof Piece)) return false;
 		Piece piece = (Piece) o;
-		return Double.compare(piece.score, score) == 0 &&
-				color == piece.color &&
+		return color == piece.color &&
 				type == piece.type &&
 				Objects.equals(position, piece.position);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(color, type, position, score);
+		return Objects.hash(color, type, position);
 	}
 
 	public String presentation() {
@@ -78,7 +77,6 @@ public abstract class Piece {
 	}
 
 	public double getPoint(List<Piece> pieces) {
-//		logger.info("pieces : " + pieces);
 		if (!isPawn()) {
 			return this.score;
 		}
@@ -86,7 +84,6 @@ public abstract class Piece {
 		for (Position position : positions) {
 			if (pieces.contains(Pawn.create(this.color, position))) {
 				logger.debug(this +"");
-//				logger.debug(this.position + "");
 				return this.score - 0.5;
 			}
 		}
