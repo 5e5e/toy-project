@@ -19,11 +19,13 @@ public class Main {
 			String command = scanner.nextLine();
 			if (command.startsWith("move")) {
 				positions = command.split(" ");
-				logger.debug("departure : " + positions[1]);
-				logger.debug("arrive : " + positions[2]);
 				board.move(positions[1], positions[2]);
 			} else if (command.startsWith("end")) break;
 			logger.debug(board.result());
+			logger.info("흰색 점수 " + board.whitePieceCalculation());
+			logger.info("검은색 점수 " + board.blackPieceCalculation());
 		}
+		if (board.blackPieceCalculation() > board.whitePieceCalculation()) logger.info("검은색 승리");
+		else logger.info("흰색 승리");
 	}
 }

@@ -79,9 +79,9 @@ public class Rank {
 	}
 
 	public Piece getPiece(int index) {
-		Piece temp = pieces.get(index);
-		pieces.set(index, Blank.create());
-		return temp;
+//		Piece temp = pieces.get(index);
+
+		return pieces.get(index);
 	}
 
 	public Piece findPiece(int index) {
@@ -110,5 +110,13 @@ public class Rank {
 			}
 		}
 		return temps;
+	}
+
+	public void setBlank(int index) {
+		pieces.set(index, Blank.create());
+	}
+
+	public List<Piece> getPieces() {
+		return pieces;
 	}
 }

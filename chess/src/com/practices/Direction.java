@@ -40,6 +40,10 @@ public enum Direction {
 
 	}
 
+	public static List<Direction> getBlackPawnPosition() {
+		return Arrays.asList(SOUTH, SOUTH_EAST, SOUTH_WEST);
+	}
+
 	public Position create(int x, int y) {
 		int finalX = x + this.x;
 		int finalY = y + this.y;

@@ -38,6 +38,11 @@ public class Position {
 
 	public static List<Position> getWhitePawnPosition(Position position) {
 		List<Direction> directions = Direction.getWhitePawnPosition();
+		List<Position> positions = getPositions(position, directions);
+		return positions;
+	}
+
+	private static List<Position> getPositions(Position position, List<Direction> directions) {
 		List<Position> positions = new ArrayList<>();
 		for (Direction direction : directions) {
 			positions.add(direction.create(position.x, position.y));
@@ -52,7 +57,7 @@ public class Position {
 
 	private static List<Position> getWhitePosition(Type type, Position position) {
 		if (isPawn(type)) return getWhitePawnPosition(position);
-		else if (isKnight(type)) return getWhiteKnightPosition(position);
+		else if (isKnight(type)) return getKnightPosition(position);
 		else if (isRook(type)) return getRookPosition(position);
 		else if (isBishop(type)) return getBishopPosition(position);
 		else if (isQueen(type)) return getQueenPosition(position);
@@ -62,10 +67,7 @@ public class Position {
 
 	private static List<Position> getKingPosition(Position position) {
 		List<Direction> directions = Direction.getKingPosition();
-		List<Position> positions = new ArrayList<>();
-		for (Direction direction : directions) {
-			positions.add(direction.create(position.x, position.y));
-		}
+		List<Position> positions = getPositions(position, directions);
 		return positions;
 	}
 
@@ -121,17 +123,26 @@ public class Position {
 		return positions;
 	}
 
-	private static List<Position> getWhiteKnightPosition(Position position) {
+	private static List<Position> getKnightPosition(Position position) {
 		List<Direction> directions = Direction.getKnightPosition();
-		List<Position> positions = new ArrayList<>();
-		for (Direction direction : directions) {
-			positions.add(direction.create(position.x, position.y));
-		}
+		List<Position> positions = getPositions(position, directions);
 		return positions;
 	}
 
 	private static List<Position> getBlackPosition(Type type, Position position) {
-		return null;
+		if (isPawn(type)) return getBlackPawnPosition(position);
+		else if (isKnight(type)) return getKnightPosition(position);
+		else if (isRook(type)) return getRookPosition(position);
+		else if (isBishop(type)) return getBishopPosition(position);
+		else if (isQueen(type)) return getQueenPosition(position);
+		else if (isKing(type)) return getKingPosition(position);
+		throw new IllegalParameterExcpetion("잘못된 매개 변수 요청입니다.");
+	}
+
+	private static List<Position> getBlackPawnPosition(Position position) {
+		List<Direction> directions = Direction.getBlackPawnPosition();
+		List<Position> positions = getPositions(position, directions);
+		return positions;
 	}
 
 	private int convertY(String position) {

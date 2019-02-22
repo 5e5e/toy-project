@@ -1,15 +1,19 @@
 package com.practices.object.board;
 
+import com.practices.Position;
 import com.practices.object.Piece.Piece;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Board {
 	private static final Logger logger = LoggerFactory.getLogger(Board.class);
 	private List<Rank> ranks = new ArrayList<>();
+	private Map<Position, Piece> positionPieceMap = new HashMap<>();
 
 	public Board() {
 		create();
@@ -48,8 +52,18 @@ public class Board {
 
 	public void move(String departure, String arrive) {
 		Piece departurePiece = getPiece(departure);
-		departurePiece.locatePosition(arrive);
-		setPiece(arrive, departurePiece);
+		if (departurePiece.move(new Position(arrive))) {
+			departurePiece.locatePosition(arrive);
+			setPiece(arrive, departurePiece);
+			setBlank(departure);
+		}
+	}
+
+	private void setBlank(String departure) {
+		int x = (departure.charAt(0) - 'a' + 1) - 1;
+		int y = Character.getNumericValue(departure.charAt(1)) - 1;
+		Rank rank = ranks.get(y);
+		rank.setBlank(x);
 	}
 
 	private Piece getPiece(String departure) {
@@ -98,5 +112,15 @@ public class Board {
 			result += piece.getPoint(pieces);
 		}
 		return result;
+	}
+
+	public Map<Position, Piece> toMap() {
+		for (Rank rank : ranks) {
+			List<Piece> pieces = rank.getPieces();
+			for (Piece piece : pieces) {
+				positionPieceMap.put(piece.getPosition(), piece);
+			}
+		}
+		return positionPieceMap;
 	}
 }
