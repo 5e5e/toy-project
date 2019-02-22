@@ -21,10 +21,10 @@ public class Blank extends Piece {
 
 	private static Piece create(Color color) {
 		if (!isNoColor(color)) throw new WrongPieceColorException("색깔 없음");
-			return create();
+		return create();
 	}
 
-	private static boolean isNoColor(Color color) {
+	public static boolean isNoColor(Color color) {
 		return Color.NO_COLOR.equals(color);
 	}
 

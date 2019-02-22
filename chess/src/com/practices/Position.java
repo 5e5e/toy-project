@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.practices.object.Piece.Bishop.isBishop;
+import static com.practices.object.Piece.Blank.isNoColor;
 import static com.practices.object.Piece.King.isKing;
 import static com.practices.object.Piece.Knight.isKnight;
 import static com.practices.object.Piece.Pawn.isPawn;
@@ -40,13 +41,13 @@ public class Position {
 		List<Direction> directions = Direction.getWhitePawnPosition();
 		List<Position> positions = new ArrayList<>();
 		for (Direction direction : directions) {
-			logger.debug("현재 기물 위치 x : " + position.x + " y : " + position.y);
 			positions.add(direction.create(position.x, position.y));
 		}
 		return positions;
 	}
 
 	public static List<Position> getPosition(Color color, Type type, Position position) {
+		if (isNoColor(color)) throw new WrongPositionException("빈칸은 움직일수 없습니다.");
 		return isWhite(color) ? getWhitePosition(type, position) : getBlackPosition(type, position);
 	}
 
@@ -81,42 +82,26 @@ public class Position {
 	private static List<Position> getBishopPosition(Position position) {
 		List<Direction> directions = Direction.getBishopPosition();
 		List<Position> positions = new ArrayList<>();
-//		for(Direction direction : directions) {
-//			if(direction.plusDegree()) {
-//				if (direction.isPlusY()) {
-//
-//				}else {
-//
-//				}
-//			}
-//			else {
-//				logger.debug("minus degree : "+direction);
-//			}
-//		}
 		int x = 0;
 		for (int j = position.y; j < position.max; j++) {
 			positions.add(directions.get(0).create(position.x + x, j));
 			x += 1;
 		}
-		logger.debug("NORTH_EAST : " + positions);
 		x = 0;
 		for (int j = position.y; j >= position.min; j--) {
 			positions.add(directions.get(1).create(position.x + x, j));
 			x += 1;
 		}
-		logger.debug("SOUTH_EAST : " + positions);
 		x = 0;
 		for (int j = position.y; j >= position.min; j--) {
 			positions.add(directions.get(2).create(position.x + x, j));
 			x -= 1;
 		}
-		logger.debug("SOUTH_WEST : " + positions);
 		x = 0;
 		for (int j = position.y; j < position.max; j++) {
 			positions.add(directions.get(3).create(position.x + x, j));
 			x-=1;
 		}
-		logger.debug("NORTH_WEST : " + positions);
 		return positions;
 	}
 
