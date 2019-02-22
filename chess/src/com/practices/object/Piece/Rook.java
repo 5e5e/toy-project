@@ -38,7 +38,7 @@ public class Rook extends Piece {
 		return create(color);
 	}
 
-	private static boolean isRook(Type type) {
+	public static boolean isRook(Type type) {
 		return Type.ROOK.equals(type);
 	}
 

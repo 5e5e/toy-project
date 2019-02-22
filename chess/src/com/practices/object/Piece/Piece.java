@@ -97,4 +97,14 @@ public abstract class Piece {
 	public void locatePosition(String arrive) {
 		this.position.setPosition(arrive);
 	}
+
+	public boolean move(Position position) {
+		List<Position> positionList = Position.getPosition(color, type, this.position);
+		logger.debug("이동할 수 있는 위치 : " + positionList);
+		return positionList.contains(position);
+	}
+
+	public Position getPosition() {
+		return position;
+	}
 }

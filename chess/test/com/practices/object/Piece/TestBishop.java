@@ -1,6 +1,7 @@
 package com.practices.object.Piece;
 
 import com.practices.Color;
+import com.practices.Position;
 import com.practices.Type;
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
@@ -8,8 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestBishop {
 	private static final Logger logger = LoggerFactory.getLogger(TestBishop.class);
@@ -37,4 +37,23 @@ public class TestBishop {
 		Exception exception = assertThrows(WrongPieceTypeException.class, () -> Bishop.create(Color.WHITE, Type.KNIGHT));
 		assertEquals("비숍 기물만 생성할 수 있습니다", exception.getMessage());
 	}
+
+	@Test
+	public void move() {
+		Piece whiteBishop = Bishop.createWhiteBishop("d5");
+		assertTrue(whiteBishop.move(new Position("e4")));
+	}
+
+	@Test
+	public void moveFalse() {
+		Piece whiteBishop = Bishop.createWhiteBishop("c1");
+		assertFalse(whiteBishop.move(new Position("e5")));
+	}
+
+	@Test
+	public void move2() {
+		Piece whiteBishop = Bishop.createWhiteBishop("f2");
+		assertTrue(whiteBishop.move(new Position("b6")));
+	}
+
 }

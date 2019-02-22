@@ -38,7 +38,7 @@ public class Bishop extends Piece {
 		return create(color);
 	}
 
-	private static boolean isBishop(Type type) {
+	public static boolean isBishop(Type type) {
 		return Type.BISHOP.equals(type);
 	}
 

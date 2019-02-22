@@ -11,8 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPawn {
 	private static Logger logger = LoggerFactory.getLogger(TestPawn.class);
@@ -65,6 +64,18 @@ public class TestPawn {
 	public void wrongPieceException() {
 		Exception exception = assertThrows(WrongPieceTypeException.class, () -> Pawn.create(Color.BLACK, Type.QUEEN));
 		assertEquals("폰 기물만 생성할 수 있습니다", exception.getMessage());
+	}
+
+	@Test
+	public void move() {
+		Piece whitePawn = Pawn.createWhitePawn(new Position("a2"));
+		assertTrue(whitePawn.move(new Position("a3")));
+	}
+
+	@Test
+	public void moveFalse() {
+		Piece whitePawn = Pawn.createWhitePawn(new Position("a2"));
+		assertFalse(whitePawn.move(new Position("b2")));
 	}
 
 

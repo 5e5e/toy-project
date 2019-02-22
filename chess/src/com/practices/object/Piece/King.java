@@ -38,7 +38,7 @@ public class King extends Piece {
 		return create(color);
 	}
 
-	private static boolean isKing(Type type) {
+	public static boolean isKing(Type type) {
 		return Type.KING.equals(type);
 	}
 

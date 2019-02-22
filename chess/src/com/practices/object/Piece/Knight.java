@@ -38,7 +38,7 @@ public class Knight extends Piece {
 		return create(color);
 	}
 
-	private static boolean isKnight(Type type) {
+	public static boolean isKnight(Type type) {
 		return Type.KNIGHT.equals(type);
 	}
 

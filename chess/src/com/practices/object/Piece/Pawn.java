@@ -6,6 +6,8 @@ import com.practices.Type;
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
 
+import java.util.List;
+
 public class Pawn extends Piece {
 	private Pawn() {
 
@@ -42,10 +44,10 @@ public class Pawn extends Piece {
 	public static Piece create(Color color, Position position) {
 		return new Pawn(color, Type.PAWN, position);
 	}
-	private static boolean isPawn(Type type) {
+
+	public static boolean isPawn(Type type) {
 		return Type.PAWN.equals(type);
 	}
-
 
 	public static Piece createWhitePawn(Position position) {
 		return new Pawn(Color.WHITE, Type.PAWN, position);

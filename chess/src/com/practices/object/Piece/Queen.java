@@ -38,7 +38,7 @@ public class Queen extends Piece {
 		return create(color);
 	}
 
-	private static boolean isQueen(Type type) {
+	public static boolean isQueen(Type type) {
 		return Type.QUEEN.equals(type);
 	}
 
