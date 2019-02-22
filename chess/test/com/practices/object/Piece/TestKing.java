@@ -37,16 +37,4 @@ public class TestKing {
 		Exception exception = assertThrows(WrongPieceTypeException.class, () -> King.create(Color.WHITE, Type.QUEEN));
 		assertEquals("킹 기물만 생성할 수 있습니다", exception.getMessage());
 	}
-
-	@Test
-	public void move() {
-		Piece whiteKing = King.createWhiteKing("d5");
-		assertTrue(whiteKing.move(new Position("c4")));
-	}
-
-	@Test
-	public void moveFalse() {
-		Piece whiteKing = King.createWhiteKing("c1");
-		assertFalse(whiteKing.move(new Position("e5")));
-	}
 }

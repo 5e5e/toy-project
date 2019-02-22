@@ -31,7 +31,6 @@ public class Position {
 	}
 
 	public Position(int x, int y) {
-		logger.debug("this.x : " + x + " y : " + y);
 		this.x = x;
 		this.y = y;
 
@@ -71,11 +70,10 @@ public class Position {
 	}
 
 	private static List<Position> getQueenPosition(Position position) {
-		List<Direction> directions = Direction.getBishopPosition();
 		List<Position> positions = new ArrayList<>();
-		for (Direction direction : directions) {
-			positions.add(direction.create(position.x, position.y));
-		}
+		positions.addAll(getRookPosition(position));
+		positions.addAll(getBishopPosition(position));
+		logger.debug("position : " + positions);
 		return positions;
 	}
 
@@ -100,7 +98,7 @@ public class Position {
 		x = 0;
 		for (int j = position.y; j < position.max; j++) {
 			positions.add(directions.get(3).create(position.x + x, j));
-			x-=1;
+			x -= 1;
 		}
 		return positions;
 	}

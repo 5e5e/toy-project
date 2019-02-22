@@ -1,79 +1,81 @@
 package com.practices;
 
 import com.practices.object.Piece.*;
-import com.practices.object.board.Board;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestMove {
 	private static final Logger logger = LoggerFactory.getLogger(TestMove.class);
-	private Board board;
-
-	@BeforeEach
-	public void setup() {
-		board = new Board();
-	}
 
 	@Test
 	public void movePawn() {
-		board.move("a2", "a4");
-		Piece blank = board.findPiece("a2");
-		Piece whitePawn = board.findPiece("a4");
-		assertEquals(Pawn.createWhitePawn(new Position("a4")), whitePawn);
-		assertEquals(Blank.create(), blank);
+		Piece whitePawn = Pawn.createWhitePawn(new Position("a2"));
+		assertTrue(whitePawn.move(new Position("a3")));
+	}
+
+	@Test
+	public void movePawnFalse() {
+		Piece whitePawn = Pawn.createWhitePawn(new Position("a2"));
+		assertFalse(whitePawn.move(new Position("b2")));
 	}
 
 	@Test
 	public void moveKnight() {
-		board.move("b1", "a3");
-		Piece blank = board.findPiece("b1");
-		Piece whiteKnight = board.findPiece("a3");
-		assertEquals(Knight.createWhiteKnight("a3"), whiteKnight);
-		assertEquals(Blank.create(), blank);
+		Piece whiteKnight = Knight.createWhiteKnight("a8");
+		assertTrue(whiteKnight.move(new Position("c7")));
+	}
+
+	@Test void moveKnightFalse() {
+		Piece whiteKnight = Knight.createWhiteKnight("a8");
+		assertFalse(whiteKnight.move(new Position("a7")));
 	}
 
 	@Test
 	public void moveRook() {
-		board.move("a1", "a8");
-		Piece blank = board.findPiece("a1");
-		Piece whiteRook = board.findPiece("a8");
-		assertEquals(Rook.createWhiteRook("a8"), whiteRook);
-		assertEquals(Blank.create(), blank);
+		Piece whiteRook = Rook.createWhiteRook("a1");
+		assertTrue(whiteRook.move(new Position("a8")));
+	}
+
+	@Test
+	public void moveRookFalse() {
+		Piece whiteRook = Rook.createWhiteRook("a1");
+		assertFalse(whiteRook.move(new Position("b2")));
 	}
 
 	@Test
 	public void moveBishop() {
-		board.move("c1", "c6");
-		Piece blank = board.findPiece("c1");
-		Piece whiteBishop = board.findPiece("c6");
-		assertEquals(Bishop.createWhiteBishop("c6"), whiteBishop);
-		assertEquals(Blank.create(), blank);
-		board.move("f1", "f6");
-		Piece blank2 = board.findPiece("f1");
-		Piece whiteBishop2 = board.findPiece("f6");
-		assertEquals(Bishop.createWhiteBishop("f6"), whiteBishop2);
-		assertEquals(Blank.create(), blank2);
+		Piece whiteBishop = Bishop.createWhiteBishop("d5");
+		assertTrue(whiteBishop.move(new Position("e4")));
+	}@Test
+	public void moveBishopFalse() {
+		Piece whiteBishop = Bishop.createWhiteBishop("c1");
+		assertFalse(whiteBishop.move(new Position("e5")));
 	}
 
 	@Test
 	public void moveQueen() {
-		board.move("d1", "d5");
-		Piece blank = board.findPiece("d1");
-		Piece whiteQueen = board.findPiece("d5");
-		assertEquals(Queen.createWhiteQueen("d5"), whiteQueen);
-		assertEquals(Blank.create(), blank);
+		Piece whiteQueen = Queen.createWhiteQueen("d8");
+		assertTrue(whiteQueen.move(new Position("h8")));
+	}
+
+	@Test
+	public void moveQueenFalse() {
+		Piece whiteQueen = Queen.createWhiteQueen("c1");
+		assertFalse(whiteQueen.move(new Position("e6")));
 	}
 
 	@Test
 	public void moveKing() {
-		board.move("e1", "e2");
-		Piece blank = board.findPiece("e1");
-		Piece whiteKing = board.findPiece("e2");
-		assertEquals(King.createWhiteKing("e2"), whiteKing);
-		assertEquals(Blank.create(), blank);
+		Piece whiteKing = King.createWhiteKing("d5");
+		assertTrue(whiteKing.move(new Position("c4")));
+	}
+
+	@Test
+	public void moveKingFalse() {
+		Piece whiteKing = King.createWhiteKing("c1");
+		assertFalse(whiteKing.move(new Position("e5")));
 	}
 }

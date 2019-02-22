@@ -47,17 +47,4 @@ public enum Direction {
 			return new Position(finalX, finalY);
 		return null;
 	}
-
-	public Position createDiagonal(int x, int y) {
-
-		return null;
-	}
-
-	public boolean plusDegree() {
-		return x / y > 0;
-	}
-
-	public boolean isPlusY() {
-		return y > 0;
-	}
 }

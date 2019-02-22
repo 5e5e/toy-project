@@ -37,23 +37,4 @@ public class TestRook {
 		Exception exception = assertThrows(WrongPieceTypeException.class, () -> Rook.create(Color.WHITE, Type.PAWN));
 		assertEquals("룩 기물만 생성할 수 있습니다", exception.getMessage());
 	}
-
-	@Test
-	public void move() {
-		Piece whiteRook = Rook.createWhiteRook("a1");
-		assertTrue(whiteRook.move(new Position("a8")));
-	}
-
-	@Test
-	public void moveFalse() {
-		Piece whiteRook = Rook.createWhiteRook("a1");
-		assertFalse(whiteRook.move(new Position("b2")));
-	}
-
-	@Test
-	public void move2() {
-		Piece whiteRook = Rook.createWhiteRook("d6");
-		assertTrue(whiteRook.move(new Position("h6")));
-	}
-
 }

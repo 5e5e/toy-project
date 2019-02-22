@@ -37,23 +37,4 @@ public class TestBishop {
 		Exception exception = assertThrows(WrongPieceTypeException.class, () -> Bishop.create(Color.WHITE, Type.KNIGHT));
 		assertEquals("비숍 기물만 생성할 수 있습니다", exception.getMessage());
 	}
-
-	@Test
-	public void move() {
-		Piece whiteBishop = Bishop.createWhiteBishop("d5");
-		assertTrue(whiteBishop.move(new Position("e4")));
-	}
-
-	@Test
-	public void moveFalse() {
-		Piece whiteBishop = Bishop.createWhiteBishop("c1");
-		assertFalse(whiteBishop.move(new Position("e5")));
-	}
-
-	@Test
-	public void move2() {
-		Piece whiteBishop = Bishop.createWhiteBishop("f2");
-		assertTrue(whiteBishop.move(new Position("b6")));
-	}
-
 }
