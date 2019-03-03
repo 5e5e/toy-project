@@ -16,10 +16,9 @@ public class Board {
 	private Map<Position, Piece> positionPieceMap = new HashMap<>();
 
 	public Board() {
-		create();
 	}
 
-	public List<Rank> create() {
+	public void create() {
 		ranks.add(Rank.createWhiteOthersPiecesRank());
 		ranks.add(Rank.createWhitePawnRank());
 		ranks.add(Rank.createBlankRank());
@@ -28,7 +27,6 @@ public class Board {
 		ranks.add(Rank.createBlankRank());
 		ranks.add(Rank.createBlackPawnRank());
 		ranks.add(Rank.createBlackOthersPiecesRank());
-		return ranks;
 	}
 
 	public String result() {
@@ -114,13 +112,9 @@ public class Board {
 		return result;
 	}
 
-	public Map<Position, Piece> toMap() {
-		for (Rank rank : ranks) {
-			List<Piece> pieces = rank.getPieces();
-			for (Piece piece : pieces) {
-				positionPieceMap.put(piece.getPosition(), piece);
-			}
-		}
-		return positionPieceMap;
+
+	public void createEmptyBoard() {
+		for (int i = 0; i < 8; i++)
+			ranks.add(Rank.createBlankLine(i));
 	}
 }

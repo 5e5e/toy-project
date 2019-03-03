@@ -1,6 +1,7 @@
 package com.practices.object.Piece;
 
 import com.practices.Color;
+import com.practices.Position;
 import com.practices.Type;
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
@@ -8,6 +9,10 @@ import com.practices.exception.WrongPieceTypeException;
 public class Blank extends Piece {
 	private Blank() {
 		super(Color.NO_COLOR, Type.BLANK);
+	}
+
+	public Blank(int x, int y) {
+		super(Color.NO_COLOR, Type.BLANK, new Position(x,y));
 	}
 
 	public static Piece create() {
@@ -30,5 +35,9 @@ public class Blank extends Piece {
 
 	private static boolean isBlank(Type type) {
 		return Type.BLANK.equals(type);
+	}
+
+	public static Piece create(int x, int y) {
+		return new Blank(x,y);
 	}
 }

@@ -6,6 +6,7 @@ import com.practices.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -101,6 +102,21 @@ public abstract class Piece {
 	public boolean move(Position position) {
 		List<Position> positionList = Position.getPosition(color, type, this.position);
 		return positionList.contains(position);
+	}
+
+	public List<Position> moveList(Position position) {
+		List<Position> positionList = Position.getPosition(color, type, this.position);
+		for (Iterator<Position> it = positionList.iterator(); it.hasNext(); ) {
+			Position value = it.next();
+
+			try {
+				if (value.equals(null)) {
+				}
+			} catch (NullPointerException e) {
+				it.remove();
+			}
+		}
+		return positionList;
 	}
 
 	public Position getPosition() {

@@ -6,22 +6,27 @@ import com.practices.Type;
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
 import com.practices.exception.WrongPositionException;
+import com.practices.object.board.Board;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestPawn {
 	private static Logger logger = LoggerFactory.getLogger(TestPawn.class);
 	private Piece whitePawn;
 	private Piece blackPawn;
+	private Board board;
+	private Piece piece;
 
 	@BeforeEach
 	public void setup() {
 		whitePawn = Pawn.createWhitePawn();
 		blackPawn = Pawn.createBlackPawn();
+		board = new Board();
 	}
 
 	@Test
@@ -40,10 +45,10 @@ public class TestPawn {
 		Piece testPawn2 = Pawn.createWhitePawn(new Position("a8"));
 		Piece testPawn3 = Pawn.createWhitePawn(new Position("h8"));
 		Piece testPawn4 = Pawn.createWhitePawn(new Position("h1"));
-		assertEquals( Pawn.createWhitePawn(new Position("a1")), testPawn1);
-		assertEquals( Pawn.createWhitePawn(new Position("a8")), testPawn2);
-		assertEquals( Pawn.createWhitePawn(new Position("h8")), testPawn3);
-		assertEquals( Pawn.createWhitePawn(new Position("h1")), testPawn4);
+		assertEquals(Pawn.createWhitePawn(new Position("a1")), testPawn1);
+		assertEquals(Pawn.createWhitePawn(new Position("a8")), testPawn2);
+		assertEquals(Pawn.createWhitePawn(new Position("h8")), testPawn3);
+		assertEquals(Pawn.createWhitePawn(new Position("h1")), testPawn4);
 	}
 
 	@Test
@@ -64,5 +69,13 @@ public class TestPawn {
 	public void wrongPieceException() {
 		Exception exception = assertThrows(WrongPieceTypeException.class, () -> Pawn.create(Color.BLACK, Type.QUEEN));
 		assertEquals("폰 기물만 생성할 수 있습니다", exception.getMessage());
+	}
+
+
+	@Test
+	public void validMove() {
+		piece = board.findPiece("e1");
+		logger.debug(piece.moveList(new Position("e1")) + "");
+
 	}
 }

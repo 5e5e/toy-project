@@ -20,69 +20,69 @@ public class TestMove {
 	@Test
 	public void movePawn() {
 		Piece whitePawn = Pawn.createWhitePawn(new Position("a2"));
-		assertTrue(whitePawn.move(new Position("a3"), board.toMap()));
+		assertTrue(whitePawn.move(new Position("a3")));
 	}
 
 	@Test
 	public void movePawnFalse() {
 		Piece whitePawn = Pawn.createWhitePawn(new Position("a2"));
-		assertFalse(whitePawn.move(new Position("b2"), board.toMap()));
+		assertFalse(whitePawn.move(new Position("b2")));
 	}
 
 	@Test
 	public void moveKnight() {
 		Piece whiteKnight = Knight.createWhiteKnight("a8");
-		assertTrue(whiteKnight.move(new Position("c7"), board.toMap()));
+		assertTrue(whiteKnight.move(new Position("c7")));
 	}
 
 	@Test void moveKnightFalse() {
 		Piece whiteKnight = Knight.createWhiteKnight("a8");
-		assertFalse(whiteKnight.move(new Position("a7"), board.toMap()));
+		assertFalse(whiteKnight.move(new Position("a7")));
 	}
 
 	@Test
 	public void moveRook() {
 		Piece whiteRook = Rook.createWhiteRook("a1");
-		assertTrue(whiteRook.move(new Position("a8"), board.toMap()));
+		assertTrue(whiteRook.move(new Position("a8")));
 	}
 
 	@Test
 	public void moveRookFalse() {
 		Piece whiteRook = Rook.createWhiteRook("a1");
-		assertFalse(whiteRook.move(new Position("b2"), board.toMap()));
+		assertFalse(whiteRook.move(new Position("b2")));
 	}
 
 	@Test
 	public void moveBishop() {
 		Piece whiteBishop = Bishop.createWhiteBishop("d5");
-		assertTrue(whiteBishop.move(new Position("e4"), board.toMap()));
+		assertTrue(whiteBishop.move(new Position("e4")));
 	}@Test
 	public void moveBishopFalse() {
 		Piece whiteBishop = Bishop.createWhiteBishop("c1");
-		assertFalse(whiteBishop.move(new Position("e5"), board.toMap()));
+		assertFalse(whiteBishop.move(new Position("e5")));
 	}
 
 	@Test
 	public void moveQueen() {
 		Piece whiteQueen = Queen.createWhiteQueen("d8");
-		assertTrue(whiteQueen.move(new Position("h8"), board.toMap()));
+		assertTrue(whiteQueen.move(new Position("h8")));
 	}
 
 	@Test
 	public void moveQueenFalse() {
 		Piece whiteQueen = Queen.createWhiteQueen("c1");
-		assertFalse(whiteQueen.move(new Position("e6"), board.toMap()));
+		assertFalse(whiteQueen.move(new Position("e6")));
 	}
 
 	@Test
 	public void moveKing() {
 		Piece whiteKing = King.createWhiteKing("d5");
-		assertTrue(whiteKing.move(new Position("c4"), board.toMap()));
+		assertTrue(whiteKing.move(new Position("c4")));
 	}
 
 	@Test
 	public void moveKingFalse() {
 		Piece whiteKing = King.createWhiteKing("c1");
-		assertFalse(whiteKing.move(new Position("e5"), board.toMap()));
+		assertFalse(whiteKing.move(new Position("e5")));
 	}
 }

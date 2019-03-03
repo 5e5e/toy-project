@@ -21,6 +21,7 @@ public class TestBoard {
 
 	@Test
 	public void create() {
+		board.create();
 		assertEquals("  abcdefgh " + "\n" + "8 RNBQKBNR 8" + "\n" + "7 PPPPPPPP 7" + "\n"
 				+ "6 ........ 6" + "\n" + "5 ........ 5" + "\n" + "4 ........ 4" + "\n" +
 				"3 ........ 3" + "\n" + "2 pppppppp 2" + "\n" + "1 rnbqkbnr 1" + "\n"
@@ -28,9 +29,11 @@ public class TestBoard {
 	}
 
 	@Test
-	public void findPiece() {
-		Piece newPiece = board.findPiece("a2");
-		assertEquals(Pawn.createWhitePawn(new Position("a2")), newPiece);
+	public void createEmptyBoard() {
+		board.createEmptyBoard();
+		assertEquals("  abcdefgh " + "\n" + "8 ........ 8" + "\n" + "7 ........ 7" + "\n"
+				+ "6 ........ 6" + "\n" + "5 ........ 5" + "\n" + "4 ........ 4" + "\n" +
+				"3 ........ 3" + "\n" + "2 ........ 2" + "\n" + "1 ........ 1" + "\n"
+				+ "  abcdefgh ", board.result());
 	}
-
 }

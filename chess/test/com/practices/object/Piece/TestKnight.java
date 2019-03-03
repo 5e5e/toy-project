@@ -1,9 +1,12 @@
 package com.practices.object.Piece;
 
 import com.practices.Color;
+import com.practices.Position;
 import com.practices.Type;
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
+import com.practices.object.board.Board;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +18,8 @@ public class TestKnight {
 	private static final Logger logger = LoggerFactory.getLogger(TestKnight.class);
 	private final Piece whiteTestKnight = Knight.createWhiteKnight();
 	private final Piece blackTestKnight = Knight.createBlackKnight();
+	private Board board;
+	private Piece piece;
 
 	@Test
 	public void createWhiteTestKnight() {
@@ -36,5 +41,17 @@ public class TestKnight {
 	public void wrongPieceException() {
 		Exception exception = assertThrows(WrongPieceTypeException.class, () -> Knight.create(Color.WHITE, Type.ROOK));
 		assertEquals("나이트 기물만 생성할 수 있습니다", exception.getMessage());
+	}
+
+	@BeforeEach
+	public void setup() {
+		board = new Board();
+	}
+
+	@Test
+	public void validMove() {
+		piece = board.findPiece("e1");
+		logger.debug(piece.moveList(new Position("e1")) + "");
+
 	}
 }

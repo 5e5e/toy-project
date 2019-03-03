@@ -66,6 +66,14 @@ public class Rank {
 		return rank;
 	}
 
+	public static Rank createBlankLine(int x) {
+		Rank rank = new Rank();
+		for(int i =0; i< 8; i++ ){
+			rank.add(Blank.create(x,i));
+		}
+		return rank;
+	}
+
 	public String result() {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Piece index : pieces) {
@@ -79,8 +87,6 @@ public class Rank {
 	}
 
 	public Piece getPiece(int index) {
-//		Piece temp = pieces.get(index);
-
 		return pieces.get(index);
 	}
 
@@ -114,9 +120,5 @@ public class Rank {
 
 	public void setBlank(int index) {
 		pieces.set(index, Blank.create());
-	}
-
-	public List<Piece> getPieces() {
-		return pieces;
 	}
 }

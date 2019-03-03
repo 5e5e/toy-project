@@ -5,36 +5,61 @@ import com.practices.Position;
 import com.practices.Type;
 import com.practices.exception.WrongPieceColorException;
 import com.practices.exception.WrongPieceTypeException;
+import com.practices.object.board.Board;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestBishop {
 	private static final Logger logger = LoggerFactory.getLogger(TestBishop.class);
-	private final Piece whiteTestBishop = Bishop.createWhiteBishop();
-	private final Piece blackTestBishop = Bishop.createBlackBishop();
+	private Board board;
+	private Piece piece;
 
-	@Test
-	public void createWhiteTestBishop() {
-		assertEquals(whiteTestBishop, Bishop.create(Color.WHITE));
+	@BeforeEach
+	public void setup() {
+		board = new Board();
 	}
 
 	@Test
-	public void createBlackPawn() {
-		assertEquals(blackTestBishop, Bishop.create(Color.BLACK));
+	public void createWhiteBishop() {
+		piece = board.findPiece("f1");
+		assertEquals(piece, Bishop.create(Color.WHITE, new Position("f1")));
 	}
 
 	@Test
-	public void wrongColorException() {
-		Exception exception = assertThrows(WrongPieceColorException.class, () -> Bishop.create(Color.NO_COLOR));
-		assertEquals("하얀색 또는 검은색 기물만 생성할 수 있습니다", exception.getMessage());
+	public void createBlackBishop() {
+		piece = board.findPiece("f8");
+		assertEquals(piece, Bishop.create(Color.BLACK, new Position("f8")));
 	}
 
 	@Test
-	public void wrongPieceException() {
-		Exception exception = assertThrows(WrongPieceTypeException.class, () -> Bishop.create(Color.WHITE, Type.KNIGHT));
-		assertEquals("비숍 기물만 생성할 수 있습니다", exception.getMessage());
+	public void validMove() {
+		piece = board.findPiece("f1");
+		logger.debug(piece.moveList(new Position("f1"))+"");
+
+	}
+
+	@Test
+	public void validMoveOpponent() {
+
+	}
+
+	@Test
+	public void invalidMoveWrongPosition() {
+
+	}
+
+	@Test
+	public void invalidMoveSameColor() {
+
+	}
+
+	@Test
+	public void moveWarning(){
+		// 차후
 	}
 }

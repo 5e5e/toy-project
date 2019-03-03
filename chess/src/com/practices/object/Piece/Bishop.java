@@ -25,17 +25,13 @@ public class Bishop extends Piece {
 		throw new WrongPieceColorException("하얀색 또는 검은색 기물만 생성할 수 있습니다");
 	}
 
-	public static Piece createWhiteBishop() {
-		return new Bishop(Color.WHITE, Type.BISHOP);
-	}
-
-	public static Piece createBlackBishop() {
-		return new Bishop(Color.BLACK, Type.BISHOP);
-	}
-
 	public static Piece create(Color color, Type type) {
 		if (!isBishop(type)) throw new WrongPieceTypeException("비숍 기물만 생성할 수 있습니다");
 		return create(color);
+	}
+
+	public static Piece create(Color color, Position position) {
+		return new Bishop(color, Type.BISHOP, position);
 	}
 
 	public static boolean isBishop(Type type) {
