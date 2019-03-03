@@ -2,9 +2,6 @@ package com.practices.object.Piece;
 
 import com.practices.Color;
 import com.practices.Position;
-import com.practices.Type;
-import com.practices.exception.WrongPieceColorException;
-import com.practices.exception.WrongPieceTypeException;
 import com.practices.object.board.Board;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestBishop {
 	private static final Logger logger = LoggerFactory.getLogger(TestBishop.class);
@@ -39,7 +35,7 @@ public class TestBishop {
 	@Test
 	public void validMove() {
 		piece = board.findPiece("f1");
-		logger.debug(piece.moveList(new Position("f1"))+"");
+		logger.debug(piece.moveList(new Position("f1")) + "");
 
 	}
 
@@ -59,7 +55,7 @@ public class TestBishop {
 	}
 
 	@Test
-	public void moveWarning(){
+	public void moveWarning() {
 		// 차후
 	}
 }

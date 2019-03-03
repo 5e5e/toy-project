@@ -15,6 +15,7 @@ public class TestMove {
 	@BeforeEach
 	public void setUp() {
 		board = new Board();
+		board.create();
 	}
 
 	@Test

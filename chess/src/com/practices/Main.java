@@ -12,6 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 		Board board = new Board();
 		Scanner scanner = new Scanner(System.in);
+		board.create();
 		logger.debug(board.result());
 		String[] positions;
 		while (true) {

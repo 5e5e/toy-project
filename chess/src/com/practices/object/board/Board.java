@@ -31,6 +31,7 @@ public class Board {
 
 	public String result() {
 		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("\n");
 		stringBuilder.append("  abcdefgh ");
 		stringBuilder.append("\n");
 		for (int i = ranks.size() - 1; i >= 0; i--) {
@@ -117,4 +118,9 @@ public class Board {
 		for (int i = 0; i < 8; i++)
 			ranks.add(Rank.createBlankLine(i));
 	}
+
+	public void replacePiece(Piece piece) {
+		Position arrive = piece.getPosition();
+		ranks.get(arrive.getY()).setPiece(arrive.getX(), piece);
+		}
 }

@@ -33,7 +33,7 @@ public class Blank extends Piece {
 		return Color.NO_COLOR.equals(color);
 	}
 
-	private static boolean isBlank(Type type) {
+	public static boolean isBlank(Type type) {
 		return Type.BLANK.equals(type);
 	}
 

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.practices.object.Piece.Bishop.isBishop;
-import static com.practices.object.Piece.Blank.isNoColor;
+import static com.practices.object.Piece.Blank.isBlank;
 import static com.practices.object.Piece.King.isKing;
 import static com.practices.object.Piece.Knight.isKnight;
 import static com.practices.object.Piece.Pawn.isPawn;
@@ -51,7 +51,7 @@ public class Position {
 	}
 
 	public static List<Position> getPosition(Color color, Type type, Position position) {
-		if (isNoColor(color)) throw new WrongPositionException("빈칸은 움직일수 없습니다.");
+		if (isBlank(type)) throw new WrongPositionException("빈칸은 움직일수 없습니다.");
 		return isWhite(color) ? getWhitePosition(type, position) : getBlackPosition(type, position);
 	}
 
@@ -207,4 +207,11 @@ public class Position {
 		this.y = convertY(arrive);
 	}
 
+	public int getY() {
+		return y;
+	}
+
+	public int getX() {
+		return x;
+	}
 }

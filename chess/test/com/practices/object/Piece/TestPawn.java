@@ -2,10 +2,6 @@ package com.practices.object.Piece;
 
 import com.practices.Color;
 import com.practices.Position;
-import com.practices.Type;
-import com.practices.exception.WrongPieceColorException;
-import com.practices.exception.WrongPieceTypeException;
-import com.practices.exception.WrongPositionException;
 import com.practices.object.board.Board;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestPawn {
 	private static Logger logger = LoggerFactory.getLogger(TestPawn.class);
@@ -40,40 +35,27 @@ public class TestPawn {
 	}
 
 	@Test
-	public void createPawn() {
-		Piece testPawn1 = Pawn.createWhitePawn(new Position("a1"));
-		Piece testPawn2 = Pawn.createWhitePawn(new Position("a8"));
-		Piece testPawn3 = Pawn.createWhitePawn(new Position("h8"));
-		Piece testPawn4 = Pawn.createWhitePawn(new Position("h1"));
-		assertEquals(Pawn.createWhitePawn(new Position("a1")), testPawn1);
-		assertEquals(Pawn.createWhitePawn(new Position("a8")), testPawn2);
-		assertEquals(Pawn.createWhitePawn(new Position("h8")), testPawn3);
-		assertEquals(Pawn.createWhitePawn(new Position("h1")), testPawn4);
-	}
+	public void calculatePoint() {
+		board.createEmptyBoard();
+		board.replacePiece(Pawn.create(Color.WHITE, new Position("a1")));
+		board.replacePiece(Pawn.create(Color.BLACK, new Position("a2")));
+		board.replacePiece(Pawn.create(Color.WHITE, new Position("a3")));
+		board.replacePiece(Pawn.create(Color.WHITE, new Position("a4")));
+		board.replacePiece(Pawn.create(Color.BLACK, new Position("a5")));
+		board.replacePiece(Pawn.create(Color.BLACK, new Position("a6")));
+		board.replacePiece(Pawn.create(Color.WHITE, new Position("a7")));
+		board.replacePiece(Pawn.create(Color.WHITE, new Position("a8")));
+		logger.debug(board.result());
+		double whitePieces = board.whitePieceCalculation();
+		double blackPieces = board.blackPieceCalculation();
+		assertEquals(2.5, whitePieces, 0.01);
+		assertEquals(1.5, blackPieces, 0.01);
 
-	@Test
-	public void WrongCreatePawnException() {
-		assertThrows(WrongPositionException.class, () -> Pawn.createWhitePawn(new Position("a9")));
-		assertThrows(WrongPositionException.class, () -> Pawn.createWhitePawn(new Position("`1")));
-		assertThrows(WrongPositionException.class, () -> Pawn.createWhitePawn(new Position("i1")));
-		assertThrows(WrongPositionException.class, () -> Pawn.createWhitePawn(new Position("a0")));
 	}
-
-	@Test
-	public void wrongColorException() {
-		Exception exception = assertThrows(WrongPieceColorException.class, () -> Pawn.create(Color.NO_COLOR));
-		assertEquals("하얀색 또는 검은색 기물만 생성할 수 있습니다", exception.getMessage());
-	}
-
-	@Test
-	public void wrongPieceException() {
-		Exception exception = assertThrows(WrongPieceTypeException.class, () -> Pawn.create(Color.BLACK, Type.QUEEN));
-		assertEquals("폰 기물만 생성할 수 있습니다", exception.getMessage());
-	}
-
 
 	@Test
 	public void validMove() {
+		board.create();
 		piece = board.findPiece("e1");
 		logger.debug(piece.moveList(new Position("e1")) + "");
 

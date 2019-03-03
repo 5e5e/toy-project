@@ -18,6 +18,7 @@ public class TestCalculation {
 	@BeforeEach
 	public void setUp() {
 		board = new Board();
+		board.create();
 	}
 
 	@Test
@@ -36,15 +37,12 @@ public class TestCalculation {
 	@Test
 	public void duplicatePawnPoint() {
 		board.move("b2", "a3");
-		board.move("c2", "a4");
-		board.move("d2", "a5");
-		board.move("e2", "a6");
-		board.move("f2", "a7");
-		board.move("g2", "a8");
+		board.move("c2", "d3");
+		board.move("d3", "c4");
 		logger.debug(board.result());
 		double whitePieces = board.whitePieceCalculation();
 		double blackPieces = board.blackPieceCalculation();
-		assertEquals(34.5, whitePieces, 0.01);
-		assertEquals(32, blackPieces, 0.01);
+		assertEquals(37, whitePieces, 0.01);
+		assertEquals(38, blackPieces, 0.01);
 	}
 }
