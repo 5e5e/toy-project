@@ -1,5 +1,8 @@
 package com.practices;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +13,7 @@ public enum Direction {
 	NORTH_NORTH_WEST(-1, 2), EAST_EAST_NORTH(2, 1), EAST_EAST_SOUTH(2, -1),
 	SOUTH_SOUTH_EAST(1, -2), SOUTH_SOUTH_WEST(-1, -2), WEST_WEST_NORTH(-2, 1),
 	WEST_WEST_SOUTH(-2, -1);
+	private static final Logger logger = LoggerFactory.getLogger(Direction.class);
 	private int x;
 	private int y;
 
@@ -42,6 +46,18 @@ public enum Direction {
 
 	public static List<Direction> getBlackPawnPosition() {
 		return Arrays.asList(SOUTH, SOUTH_EAST, SOUTH_WEST);
+	}
+
+	public static Direction decide(String departure, String arrive) {
+		Position arrivePosition = new Position(arrive);
+		Position departurePosition = new Position(departure);
+		Position direction = arrivePosition.calculateDirection(departurePosition);
+		logger.debug("direction : " + direction);
+		Direction[] directions = Direction.values();
+		for (Direction d : directions) {
+			if (d.x == direction.getX() && d.y == direction.getY()) return d;
+		}
+		return null;
 	}
 
 	public Position create(int x, int y) {

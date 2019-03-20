@@ -51,7 +51,6 @@ public class TestRook {
 	@Test
 	public void validMove() {
 		piece = board.findPiece("h1");
-		logger.debug(piece.moveList(new Position("h1")) + "");
 
 	}
 }

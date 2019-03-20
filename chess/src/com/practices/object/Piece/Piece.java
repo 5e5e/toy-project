@@ -101,11 +101,6 @@ public abstract class Piece {
 
 	public boolean move(Position position) {
 		List<Position> positionList = Position.getPosition(color, type, this.position);
-		return positionList.contains(position);
-	}
-
-	public List<Position> moveList(Position position) {
-		List<Position> positionList = Position.getPosition(color, type, this.position);
 		for (Iterator<Position> it = positionList.iterator(); it.hasNext(); ) {
 			Position value = it.next();
 
@@ -116,11 +111,14 @@ public abstract class Piece {
 				it.remove();
 			}
 		}
-		return positionList;
+		return positionList.contains(position);
 	}
 
 	public Position getPosition() {
 		return position;
 	}
 
+	public boolean isBlank() {
+		return this.type.equals(Type.BLANK);
+	}
 }

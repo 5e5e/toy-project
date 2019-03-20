@@ -13,6 +13,7 @@ public class Main {
 		Board board = new Board();
 		Scanner scanner = new Scanner(System.in);
 		board.create();
+		board.toMap();
 		logger.debug(board.result());
 		String[] positions;
 		while (true) {
@@ -21,6 +22,7 @@ public class Main {
 			if (command.startsWith("move")) {
 				positions = command.split(" ");
 				board.move(positions[1], positions[2]);
+				board.toMap();
 			} else if (command.startsWith("end")) break;
 			logger.debug(board.result());
 			logger.info("흰색 점수 " + board.whitePieceCalculation());

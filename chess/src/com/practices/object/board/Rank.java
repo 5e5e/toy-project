@@ -66,10 +66,10 @@ public class Rank {
 		return rank;
 	}
 
-	public static Rank createBlankLine(int x) {
+	public static Rank createBlankLine(int y) {
 		Rank rank = new Rank();
-		for(int i =0; i< 8; i++ ){
-			rank.add(Blank.create(x,i));
+		for (int x = 0; x < 8; x++) {
+			rank.add(Blank.create(x, y));
 		}
 		return rank;
 	}
@@ -84,10 +84,6 @@ public class Rank {
 
 	private void add(Piece piece) {
 		pieces.add(piece);
-	}
-
-	public Piece getPiece(int index) {
-		return pieces.get(index);
 	}
 
 	public Piece findPiece(int index) {
@@ -120,5 +116,9 @@ public class Rank {
 
 	public void setBlank(int index) {
 		pieces.set(index, Blank.create());
+	}
+
+	public List<Piece> getPiece() {
+		return pieces;
 	}
 }

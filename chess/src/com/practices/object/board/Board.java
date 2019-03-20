@@ -1,19 +1,18 @@
 package com.practices.object.board;
 
+import com.practices.Direction;
 import com.practices.Position;
+import com.practices.grobal.Manager;
 import com.practices.object.Piece.Piece;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Board {
 	private static final Logger logger = LoggerFactory.getLogger(Board.class);
 	private List<Rank> ranks = new ArrayList<>();
-	private Map<Position, Piece> positionPieceMap = new HashMap<>();
 
 	public Board() {
 	}
@@ -21,10 +20,10 @@ public class Board {
 	public void create() {
 		ranks.add(Rank.createWhiteOthersPiecesRank());
 		ranks.add(Rank.createWhitePawnRank());
-		ranks.add(Rank.createBlankRank());
-		ranks.add(Rank.createBlankRank());
-		ranks.add(Rank.createBlankRank());
-		ranks.add(Rank.createBlankRank());
+		ranks.add(Rank.createBlankLine(2));
+		ranks.add(Rank.createBlankLine(3));
+		ranks.add(Rank.createBlankLine(4));
+		ranks.add(Rank.createBlankLine(5));
 		ranks.add(Rank.createBlackPawnRank());
 		ranks.add(Rank.createBlackOthersPiecesRank());
 	}
@@ -43,14 +42,15 @@ public class Board {
 	}
 
 	public Piece findPiece(String position) {
-		int x = (position.charAt(0) - 'a' + 1) - 1;
-		int y = Character.getNumericValue(position.charAt(1)) - 1;
+		Position p = new Position(position);
+		int x = p.getX();
+		int y = p.getY();
 		Rank rank = ranks.get(y);
 		return rank.findPiece(x);
 	}
 
 	public void move(String departure, String arrive) {
-		Piece departurePiece = getPiece(departure);
+		Piece departurePiece = findPiece(departure);
 		if (departurePiece.move(new Position(arrive))) {
 			departurePiece.locatePosition(arrive);
 			setPiece(arrive, departurePiece);
@@ -59,22 +59,17 @@ public class Board {
 	}
 
 	private void setBlank(String departure) {
-		int x = (departure.charAt(0) - 'a' + 1) - 1;
-		int y = Character.getNumericValue(departure.charAt(1)) - 1;
+		Position position = new Position(departure);
+		int x = position.getX();
+		int y = position.getY();
 		Rank rank = ranks.get(y);
 		rank.setBlank(x);
 	}
 
-	private Piece getPiece(String departure) {
-		int x = (departure.charAt(0) - 'a' + 1) - 1;
-		int y = Character.getNumericValue(departure.charAt(1)) - 1;
-		Rank rank = ranks.get(y);
-		return rank.getPiece(x);
-	}
-
 	private void setPiece(String arrive, Piece departurePiece) {
-		int x = (arrive.charAt(0) - 'a' + 1) - 1;
-		int y = Character.getNumericValue(arrive.charAt(1)) - 1;
+		Position position = new Position(arrive);
+		int x = position.getX();
+		int y = position.getY();
 		Rank rank = ranks.get(y);
 		rank.setPiece(x, departurePiece);
 	}
@@ -122,5 +117,14 @@ public class Board {
 	public void replacePiece(Piece piece) {
 		Position arrive = piece.getPosition();
 		ranks.get(arrive.getY()).setPiece(arrive.getX(), piece);
+	}
+
+	public void toMap() {
+		for (Rank i : ranks) {
+			for (Piece j : i.getPiece()) {
+				if (!j.isBlank())
+					Manager.chessMap.put(j.getPosition(), j);
+			}
 		}
+	}
 }

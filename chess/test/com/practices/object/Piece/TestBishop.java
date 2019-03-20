@@ -35,7 +35,6 @@ public class TestBishop {
 	@Test
 	public void validMove() {
 		piece = board.findPiece("f1");
-		logger.debug(piece.moveList(new Position("f1")) + "");
 
 	}
 

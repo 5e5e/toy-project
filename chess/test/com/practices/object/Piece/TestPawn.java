@@ -57,7 +57,6 @@ public class TestPawn {
 	public void validMove() {
 		board.create();
 		piece = board.findPiece("e1");
-		logger.debug(piece.moveList(new Position("e1")) + "");
 
 	}
 }

@@ -24,6 +24,8 @@ public class Position {
 	private final int max = 8;
 	private int x;
 	private int y;
+	private int directionX;
+	private int directionY;
 
 	public Position(String position) {
 		this.x = convertX(position);
@@ -75,7 +77,6 @@ public class Position {
 		List<Position> positions = new ArrayList<>();
 		positions.addAll(getRookPosition(position));
 		positions.addAll(getBishopPosition(position));
-		logger.debug("position : " + positions);
 		return positions;
 	}
 
@@ -213,5 +214,11 @@ public class Position {
 
 	public int getX() {
 		return x;
+	}
+
+	public Position calculateDirection(Position departure) {
+		directionX = this.x - departure.x;
+		directionY = this.y - departure.y;
+		return new Position(directionX, directionY);
 	}
 }

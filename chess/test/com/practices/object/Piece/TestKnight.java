@@ -51,7 +51,6 @@ public class TestKnight {
 	@Test
 	public void validMove() {
 		piece = board.findPiece("e1");
-		logger.debug(piece.moveList(new Position("e1")) + "");
 
 	}
 }
