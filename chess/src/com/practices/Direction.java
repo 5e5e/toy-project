@@ -51,13 +51,21 @@ public enum Direction {
 	public static Direction decide(String departure, String arrive) {
 		Position arrivePosition = new Position(arrive);
 		Position departurePosition = new Position(departure);
-		Position direction = arrivePosition.calculateDirection(departurePosition);
-		logger.debug("direction : " + direction);
-		Direction[] directions = Direction.values();
-		for (Direction d : directions) {
-			if (d.x == direction.getX() && d.y == direction.getY()) return d;
+		int gapX = arrivePosition.getX() - departurePosition.getX();
+		int gapY = arrivePosition.getY() - departurePosition.getY();
+		if (gapX == 0) {
+			return gapY > 0 ? NORTH : SOUTH;
 		}
-		return null;
+		if (gapY == 0) {
+			return gapX > 0 ? EAST : WEST;
+		}
+		if (gapY / gapX == 1) {
+			return gapX + gapY > 0 ? NORTH_EAST : SOUTH_WEST;
+		}
+		if (gapY / gapX == -1) {
+			return gapX > 0 ? SOUTH_EAST : NORTH_WEST;
+		}
+		throw new IllegalArgumentException("message");
 	}
 
 	public Position create(int x, int y) {
