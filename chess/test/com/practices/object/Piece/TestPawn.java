@@ -9,29 +9,32 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestPawn {
 	private static Logger logger = LoggerFactory.getLogger(TestPawn.class);
-	private Piece whitePawn;
-	private Piece blackPawn;
 	private Board board;
 	private Piece piece;
 
 	@BeforeEach
 	public void setup() {
-		whitePawn = Pawn.createWhitePawn();
-		blackPawn = Pawn.createBlackPawn();
+
 		board = new Board();
 	}
 
 	@Test
 	public void createWhitePawn() {
-		assertEquals(whitePawn, Pawn.create(Color.WHITE));
+		board.create();
+		piece = board.findPiece("a2");
+		assertEquals(piece, Pawn.create(Color.WHITE, new Position("a2")));
 	}
 
 	@Test
 	public void createBlackPawn() {
-		assertEquals(blackPawn, Pawn.create(Color.BLACK));
+
+		board.create();
+		piece = board.findPiece("a7");
+		assertEquals(piece, Pawn.create(Color.BLACK, new Position("a7")));
 	}
 
 	@Test
@@ -54,9 +57,10 @@ public class TestPawn {
 	}
 
 	@Test
-	public void validMove() {
+	public void validDirection() {
 		board.create();
-		piece = board.findPiece("e1");
-
+		piece = board.findPiece("a2");
+		Piece target = board.findPiece("a4");
+		assertTrue(piece.validDirection(target));
 	}
 }

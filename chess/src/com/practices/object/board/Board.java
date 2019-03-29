@@ -1,6 +1,5 @@
 package com.practices.object.board;
 
-import com.practices.Direction;
 import com.practices.Position;
 import com.practices.grobal.Manager;
 import com.practices.object.Piece.Piece;
@@ -50,12 +49,36 @@ public class Board {
 	}
 
 	public void move(String departure, String arrive) {
-		Piece departurePiece = findPiece(departure);
-		if (departurePiece.move(new Position(arrive))) {
-			departurePiece.locatePosition(arrive);
-			setPiece(arrive, departurePiece);
-			setBlank(departure);
-		}
+//		Piece departurePiece = findPiece(departure);
+//		Piece destinationPiece = findPiece(arrive);
+//		List<Direction> directions = departurePiece.getAbleDirection();
+//		 departurePiece.move(destinationPiece);
+//		if (directions.contains(direction)) {
+//			Position next = departurePiece.getPosition();
+//			Piece nextPiece = findPiece(next);
+//			while (true) {
+//				if (!destinationPiece.getPosition().equals(next)) {
+//					if (!nextPiece.isBlank()) break;
+//				} else {
+//					if (!nextPiece.isSameColor(destinationPiece)) {
+//						departurePiece.locatePosition(arrive);
+//						setPiece(arrive, departurePiece);
+//						replacePiece(Blank.create(departurePiece.getPosition().getX(), departurePiece.getPosition().getY()));
+//						break;
+//					}
+//				}
+//				next = new Position(next.getX() + direction.getX(), next.getY() + direction.getY());
+//				nextPiece = findPiece(next);
+//
+//			}
+//
+//
+//		}
+	}
+
+	private Piece findPiece(Position next) {
+		Rank rank = ranks.get(next.getY());
+		return rank.findPiece(next.getX());
 	}
 
 	private void setBlank(String departure) {

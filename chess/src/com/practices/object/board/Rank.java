@@ -1,5 +1,7 @@
 package com.practices.object.board;
 
+import com.practices.Color;
+import com.practices.Position;
 import com.practices.object.Piece.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,34 +20,34 @@ public class Rank {
 
 	public static Rank createWhiteOthersPiecesRank() {
 		Rank rank = new Rank();
-		rank.add(Rook.createWhiteRook("a1"));
-		rank.add(Knight.createWhiteKnight("b1"));
-		rank.add(Bishop.createWhiteBishop("c1"));
-		rank.add(Queen.createWhiteQueen("d1"));
-		rank.add(King.createWhiteKing("e1"));
-		rank.add(Bishop.createWhiteBishop("f1"));
-		rank.add(Knight.createWhiteKnight("g1"));
-		rank.add(Rook.createWhiteRook("h1"));
+		rank.add(Rook.create(Color.WHITE,new Position("a1")));
+		rank.add(Knight.create(Color.WHITE, new Position("b1")));
+		rank.add(Bishop.create(Color.WHITE, new Position("c1")));
+		rank.add(Queen.create(Color.WHITE, new Position("d1")));
+		rank.add(King.create(Color.WHITE, new Position("e1")));
+		rank.add(Bishop.create(Color.WHITE, new Position("f1")));
+		rank.add(Knight.create(Color.WHITE, new Position("g1")));
+		rank.add(Rook.create(Color.WHITE,new Position("h1")));
 		return rank;
 	}
 
 	public static Rank createBlackOthersPiecesRank() {
 		Rank rank = new Rank();
-		rank.add(Rook.createBlackRook("a8"));
-		rank.add(Knight.createBlackKnight("b8"));
-		rank.add(Bishop.createBlackBishop("c8"));
-		rank.add(Queen.createBlackQueen("d8"));
-		rank.add(King.createBlackKing("e8"));
-		rank.add(Bishop.createBlackBishop("f8"));
-		rank.add(Knight.createBlackKnight("g8"));
-		rank.add(Rook.createBlackRook("h8"));
+		rank.add(Rook.create(Color.BLACK,new Position("a8")));
+		rank.add(Knight.create(Color.BLACK, new Position("b8")));
+		rank.add(Bishop.create(Color.BLACK, new Position("c8")));
+		rank.add(Queen.create(Color.BLACK, new Position("d8")));
+		rank.add(King.create(Color.BLACK, new Position("e8")));
+		rank.add(Bishop.create(Color.BLACK, new Position("f8")));
+		rank.add(Knight.create(Color.BLACK, new Position("g8")));
+		rank.add(Rook.create(Color.BLACK,new Position("h8")));
 		return rank;
 	}
 
 	public static Rank createWhitePawnRank() {
 		Rank rank = new Rank();
 		for (int i = 0; i < 8; i++) {
-			rank.add(Pawn.createWhitePawn(i));
+			rank.add(Pawn.create(Color.WHITE, new Position(i, 1)));
 		}
 		return rank;
 	}
@@ -61,7 +63,7 @@ public class Rank {
 	public static Rank createBlackPawnRank() {
 		Rank rank = new Rank();
 		for (int i = 0; i < 8; i++) {
-			rank.add(Pawn.createBlackPawn(i));
+			rank.add(Pawn.create(Color.BLACK, new Position(i, 6)));
 		}
 		return rank;
 	}
@@ -107,7 +109,7 @@ public class Rank {
 	public List<Piece> findBlackPieces() {
 		temps.clear();
 		for (Piece piece : pieces) {
-			if (piece.isBlack()) {
+			if (!piece.isWhite()) {
 				temps.add(piece);
 			}
 		}

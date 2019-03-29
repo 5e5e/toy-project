@@ -2,9 +2,6 @@ package com.practices.object.Piece;
 
 import com.practices.Color;
 import com.practices.Position;
-import com.practices.Type;
-import com.practices.exception.WrongPieceColorException;
-import com.practices.exception.WrongPieceTypeException;
 import com.practices.object.board.Board;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,36 +9,28 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestRook {
 	private static final Logger logger = LoggerFactory.getLogger(TestRook.class);
-	private final Piece whiteRook = Rook.createWhiteRook();
-	private final Piece blackRook = Rook.createBlackRook();
+
 	private Board board;
 	private Piece piece;
 
 	@Test
 	public void createWhiteRook() {
-		assertEquals(whiteRook, Rook.create(Color.WHITE));
+		board.create();
+		piece = board.findPiece("a1");
+		assertEquals(piece, Rook.create(Color.WHITE, new Position("a1")));
 	}
 
 	@Test
 	public void createBlackPawn() {
-		assertEquals(blackRook, Rook.create(Color.BLACK));
+		board.create();
+		piece = board.findPiece("a8");
+		assertEquals(piece, Rook.create(Color.BLACK, new Position("a8")));
 	}
 
-	@Test
-	public void wrongColorException() {
-		Exception exception = assertThrows(WrongPieceColorException.class, () -> Rook.create(Color.NO_COLOR));
-		assertEquals("하얀색 또는 검은색 기물만 생성할 수 있습니다", exception.getMessage());
-	}
-
-	@Test
-	public void wrongPieceException() {
-		Exception exception = assertThrows(WrongPieceTypeException.class, () -> Rook.create(Color.WHITE, Type.PAWN));
-		assertEquals("룩 기물만 생성할 수 있습니다", exception.getMessage());
-	}
 
 	@BeforeEach
 	public void setup() {
@@ -49,8 +38,10 @@ public class TestRook {
 	}
 
 	@Test
-	public void validMove() {
+	public void validDirection() {
+		board.create();
 		piece = board.findPiece("h1");
-
+		Piece target = board.findPiece("a1");
+		assertTrue(piece.validDirection(target));
 	}
 }

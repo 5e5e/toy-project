@@ -1,21 +1,24 @@
 package com.practices.object.Piece;
 
 import com.practices.Color;
+import com.practices.Direction;
 import com.practices.Position;
 import com.practices.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public abstract class Piece {
 	private static final Logger logger = LoggerFactory.getLogger(Piece.class);
+	private Map<Direction, Direction> directions;
 	private Color color;
 	private Type type;
 	private Position position;
 	private double score;
+	private int moveCount;
 
 	public Piece() {
 
@@ -27,34 +30,12 @@ public abstract class Piece {
 		this.score = type.getScore();
 	}
 
-	public Piece(Color color, Type type, Position position) {
+	public Piece(Color color, Type type, Position position, Map<Direction, Direction> directions) {
 		this.color = color;
 		this.type = type;
 		this.position = position;
+		this.directions = directions;
 		this.score = type.getScore();
-	}
-
-	public static boolean isBlack(Color color) {
-		return color.equals(Color.BLACK);
-	}
-
-	public static boolean isWhite(Color color) {
-		return color.equals(Color.WHITE);
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Piece)) return false;
-		Piece piece = (Piece) o;
-		return color == piece.color &&
-				type == piece.type &&
-				Objects.equals(position, piece.position);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(color, type, position);
 	}
 
 	public String presentation() {
@@ -66,16 +47,12 @@ public abstract class Piece {
 	}
 
 
-	public boolean isBlack() {
-		return Color.BLACK.equals(this.color);
-	}
-
-	public boolean isPawn() {
+	private boolean isPawn() {
 		return this.type.equals(Type.PAWN);
 	}
 
 	public double getPoint(List<Piece> pieces) {
-		if (!isPawn()) {
+		if (! isPawn()) {
 			return this.score;
 		}
 		List<Position> positions = this.position.getYPosition();
@@ -87,32 +64,24 @@ public abstract class Piece {
 		return this.score;
 	}
 
-	@Override
-	public String toString() {
-		return "Piece{" +
-				"type=" + type +
-				", position=" + position +
-				'}';
-	}
-
 	public void locatePosition(String arrive) {
 		this.position.setPosition(arrive);
 	}
 
-	public boolean move(Position position) {
-		List<Position> positionList = Position.getPosition(color, type, this.position);
-		for (Iterator<Position> it = positionList.iterator(); it.hasNext(); ) {
-			Position value = it.next();
-
-			try {
-				if (value.equals(null)) {
-				}
-			} catch (NullPointerException e) {
-				it.remove();
-			}
-		}
-		return positionList.contains(position);
-	}
+//	public boolean move(Position position) {
+//		List<Position> positionList = Position.getPosition(color, type, this.position);
+//		for (Iterator<Position> it = positionList.iterator(); it.hasNext(); ) {
+//			Position value = it.next();
+//
+//			try {
+//				if (value.equals(null)) {
+//				}
+//			} catch (NullPointerException e) {
+//				it.remove();
+//			}
+//		}
+//		return positionList.contains(position);
+//	}
 
 	public Position getPosition() {
 		return position;
@@ -120,5 +89,47 @@ public abstract class Piece {
 
 	public boolean isBlank() {
 		return this.type.equals(Type.BLANK);
+	}
+
+
+	public boolean validMove(Piece target) {
+		Direction direction = Direction.calculateRoute(this.position, target.position);
+		if (!directions.containsKey(direction)) {
+			return false;
+		}
+		return directions.containsKey(direction);
+	}
+
+	public boolean validDirection(Piece target) {
+		Direction direction = Direction.calculateRoute(this.position, target.position);
+		return directions.containsKey(direction);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Piece)) return false;
+		Piece piece = (Piece) o;
+		return Double.compare(piece.score, score) == 0 &&
+				directions.equals(piece.directions) &&
+				color == piece.color &&
+				type == piece.type;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(directions, color, type, score);
+	}
+
+	@Override
+	public String toString() {
+		return "Piece{" +
+				"directions=" + directions +
+				", color=" + color +
+				", type=" + type +
+				", position=" + position +
+				", score=" + score +
+				", moveCount=" + moveCount +
+				'}';
 	}
 }

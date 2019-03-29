@@ -1,6 +1,5 @@
 package com.practices;
 
-import com.practices.exception.IllegalParameterExcpetion;
 import com.practices.exception.WrongPositionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,23 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static com.practices.object.Piece.Bishop.isBishop;
-import static com.practices.object.Piece.Blank.isBlank;
-import static com.practices.object.Piece.King.isKing;
-import static com.practices.object.Piece.Knight.isKnight;
-import static com.practices.object.Piece.Pawn.isPawn;
-import static com.practices.object.Piece.Piece.isWhite;
-import static com.practices.object.Piece.Queen.isQueen;
-import static com.practices.object.Piece.Rook.isRook;
-
 public class Position {
 	private static final Logger logger = LoggerFactory.getLogger(Position.class);
 	private final int min = 0;
 	private final int max = 8;
 	private int x;
 	private int y;
-	private int directionX;
-	private int directionY;
+
 
 	public Position(String position) {
 		this.x = convertX(position);
@@ -33,117 +22,10 @@ public class Position {
 	}
 
 	public Position(int x, int y) {
+
 		this.x = x;
 		this.y = y;
 
-	}
-
-	public static List<Position> getWhitePawnPosition(Position position) {
-		List<Direction> directions = Direction.getWhitePawnPosition();
-		List<Position> positions = getPositions(position, directions);
-		return positions;
-	}
-
-	private static List<Position> getPositions(Position position, List<Direction> directions) {
-		List<Position> positions = new ArrayList<>();
-		for (Direction direction : directions) {
-			positions.add(direction.create(position.x, position.y));
-		}
-		return positions;
-	}
-
-	public static List<Position> getPosition(Color color, Type type, Position position) {
-		if (isBlank(type)) throw new WrongPositionException("빈칸은 움직일수 없습니다.");
-		return isWhite(color) ? getWhitePosition(type, position) : getBlackPosition(type, position);
-	}
-
-	private static List<Position> getWhitePosition(Type type, Position position) {
-		if (isPawn(type)) return getWhitePawnPosition(position);
-		else if (isKnight(type)) return getKnightPosition(position);
-		else if (isRook(type)) return getRookPosition(position);
-		else if (isBishop(type)) return getBishopPosition(position);
-		else if (isQueen(type)) return getQueenPosition(position);
-		else if (isKing(type)) return getKingPosition(position);
-		throw new IllegalParameterExcpetion("잘못된 매개 변수 요청입니다.");
-	}
-
-	private static List<Position> getKingPosition(Position position) {
-		List<Direction> directions = Direction.getKingPosition();
-		List<Position> positions = getPositions(position, directions);
-		return positions;
-	}
-
-	private static List<Position> getQueenPosition(Position position) {
-		List<Position> positions = new ArrayList<>();
-		positions.addAll(getRookPosition(position));
-		positions.addAll(getBishopPosition(position));
-		return positions;
-	}
-
-	private static List<Position> getBishopPosition(Position position) {
-		List<Direction> directions = Direction.getBishopPosition();
-		List<Position> positions = new ArrayList<>();
-		int x = 0;
-		for (int j = position.y; j < position.max; j++) {
-			positions.add(directions.get(0).create(position.x + x, j));
-			x += 1;
-		}
-		x = 0;
-		for (int j = position.y; j >= position.min; j--) {
-			positions.add(directions.get(1).create(position.x + x, j));
-			x += 1;
-		}
-		x = 0;
-		for (int j = position.y; j >= position.min; j--) {
-			positions.add(directions.get(2).create(position.x + x, j));
-			x -= 1;
-		}
-		x = 0;
-		for (int j = position.y; j < position.max; j++) {
-			positions.add(directions.get(3).create(position.x + x, j));
-			x -= 1;
-		}
-		return positions;
-	}
-
-	private static List<Position> getRookPosition(Position position) {
-		List<Direction> directions = Direction.getRookPosition();
-		List<Position> positions = new ArrayList<>();
-		for (int j = position.y; j > position.min; j--) {
-			positions.add(directions.get(1).create(position.x, j));
-		}
-		for (int j = position.y; j < position.max; j++) {
-			positions.add(directions.get(0).create(position.x, j));
-		}
-		for (int j = position.x; j > position.min; j--) {
-			positions.add(directions.get(2).create(j, position.y));
-		}
-		for (int j = position.x; j < position.max; j++) {
-			positions.add(directions.get(3).create(j, position.y));
-		}
-		return positions;
-	}
-
-	private static List<Position> getKnightPosition(Position position) {
-		List<Direction> directions = Direction.getKnightPosition();
-		List<Position> positions = getPositions(position, directions);
-		return positions;
-	}
-
-	private static List<Position> getBlackPosition(Type type, Position position) {
-		if (isPawn(type)) return getBlackPawnPosition(position);
-		else if (isKnight(type)) return getKnightPosition(position);
-		else if (isRook(type)) return getRookPosition(position);
-		else if (isBishop(type)) return getBishopPosition(position);
-		else if (isQueen(type)) return getQueenPosition(position);
-		else if (isKing(type)) return getKingPosition(position);
-		throw new IllegalParameterExcpetion("잘못된 매개 변수 요청입니다.");
-	}
-
-	private static List<Position> getBlackPawnPosition(Position position) {
-		List<Direction> directions = Direction.getBlackPawnPosition();
-		List<Position> positions = getPositions(position, directions);
-		return positions;
 	}
 
 	private int convertY(String position) {
@@ -214,11 +96,5 @@ public class Position {
 
 	public int getX() {
 		return x;
-	}
-
-	public Position calculateDirection(Position departure) {
-		directionX = this.x - departure.x;
-		directionY = this.y - departure.y;
-		return new Position(directionX, directionY);
 	}
 }

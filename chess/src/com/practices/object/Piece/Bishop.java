@@ -1,48 +1,20 @@
 package com.practices.object.Piece;
 
 import com.practices.Color;
+import com.practices.Direction;
 import com.practices.Position;
 import com.practices.Type;
-import com.practices.exception.WrongPieceColorException;
-import com.practices.exception.WrongPieceTypeException;
+
+import java.util.Map;
 
 public class Bishop extends Piece {
-	private Bishop() {
-
+	private Bishop(Color color, Type bishop, Position position, Map<Direction, Direction> directions) {
+		super(color, bishop, position, directions);
 	}
 
-	private Bishop(Color color, Type type) {
-		super(color, type);
-	}
-
-	public Bishop(Color color, Type bishop, Position position) {
-		super(color, bishop, position);
-	}
-
-	public static Piece create(Color color) {
-		if (isWhite(color) || isBlack(color))
-			return isWhite(color) ? new Bishop(Color.WHITE, Type.BISHOP) : new Bishop(Color.BLACK, Type.BISHOP);
-		throw new WrongPieceColorException("하얀색 또는 검은색 기물만 생성할 수 있습니다");
-	}
-
-	public static Piece create(Color color, Type type) {
-		if (!isBishop(type)) throw new WrongPieceTypeException("비숍 기물만 생성할 수 있습니다");
-		return create(color);
-	}
 
 	public static Piece create(Color color, Position position) {
-		return new Bishop(color, Type.BISHOP, position);
+		return new Bishop(color, Type.BISHOP, position, Direction.getDiagonal());
 	}
 
-	public static boolean isBishop(Type type) {
-		return Type.BISHOP.equals(type);
-	}
-
-	public static Piece createWhiteBishop(String position) {
-		return new Bishop(Color.WHITE, Type.BISHOP, new Position(position));
-	}
-
-	public static Piece createBlackBishop(String c8) {
-		return new Bishop(Color.BLACK, Type.BISHOP, new Position(c8));
-	}
 }
