@@ -52,7 +52,7 @@ public abstract class Piece {
 	}
 
 	public double getPoint(List<Piece> pieces) {
-		if (! isPawn()) {
+		if (!isPawn()) {
 			return this.score;
 		}
 		List<Position> positions = this.position.getYPosition();
@@ -91,18 +91,8 @@ public abstract class Piece {
 		return this.type.equals(Type.BLANK);
 	}
 
-
-	public boolean validMove(Piece target) {
-		Direction direction = Direction.calculateRoute(this.position, target.position);
-		if (!directions.containsKey(direction)) {
-			return false;
-		}
-		return directions.containsKey(direction);
-	}
-
-	public boolean validDirection(Piece target) {
-		Direction direction = Direction.calculateRoute(this.position, target.position);
-		return directions.containsKey(direction);
+	public Direction validDirection(Piece target) {
+		return Direction.calculateRoute(this.position, target.position);
 	}
 
 	@Override
@@ -131,5 +121,9 @@ public abstract class Piece {
 				", score=" + score +
 				", moveCount=" + moveCount +
 				'}';
+	}
+
+	public boolean samePosition(Piece piece) {
+		return this.position.equals(piece.position);
 	}
 }

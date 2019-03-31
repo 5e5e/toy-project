@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestRook {
 	private static final Logger logger = LoggerFactory.getLogger(TestRook.class);
@@ -37,11 +36,4 @@ public class TestRook {
 		board = new Board();
 	}
 
-	@Test
-	public void validDirection() {
-		board.create();
-		piece = board.findPiece("h1");
-		Piece target = board.findPiece("a1");
-		assertTrue(piece.validDirection(target));
-	}
 }

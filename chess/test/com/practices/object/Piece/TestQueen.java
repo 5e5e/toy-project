@@ -37,13 +37,5 @@ public class TestQueen {
 		board = new Board();
 	}
 
-	@Test
-	public void validDirection() {
-		board.create();
-		piece = board.findPiece("d1");
-		Piece target = board.findPiece("h1");
-		assertTrue(piece.validDirection(target));
 
-
-	}
 }

@@ -21,8 +21,11 @@ public class Main {
 			String command = scanner.nextLine();
 			if (command.startsWith("move")) {
 				positions = command.split(" ");
-				board.move(positions[1], positions[2]);
-				board.toMap();
+				try {
+					board.move(positions[1], positions[2]);
+				} catch (IllegalArgumentException e) {
+					logger.debug("목적지 까지 움직일 수 없습니다.");
+				}
 			} else if (command.startsWith("end")) break;
 			logger.debug(board.result());
 			logger.info("흰색 점수 " + board.whitePieceCalculation());

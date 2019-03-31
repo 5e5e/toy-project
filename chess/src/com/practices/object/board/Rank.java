@@ -20,27 +20,27 @@ public class Rank {
 
 	public static Rank createWhiteOthersPiecesRank() {
 		Rank rank = new Rank();
-		rank.add(Rook.create(Color.WHITE,new Position("a1")));
+		rank.add(Rook.create(Color.WHITE, new Position("a1")));
 		rank.add(Knight.create(Color.WHITE, new Position("b1")));
 		rank.add(Bishop.create(Color.WHITE, new Position("c1")));
 		rank.add(Queen.create(Color.WHITE, new Position("d1")));
 		rank.add(King.create(Color.WHITE, new Position("e1")));
 		rank.add(Bishop.create(Color.WHITE, new Position("f1")));
 		rank.add(Knight.create(Color.WHITE, new Position("g1")));
-		rank.add(Rook.create(Color.WHITE,new Position("h1")));
+		rank.add(Rook.create(Color.WHITE, new Position("h1")));
 		return rank;
 	}
 
 	public static Rank createBlackOthersPiecesRank() {
 		Rank rank = new Rank();
-		rank.add(Rook.create(Color.BLACK,new Position("a8")));
+		rank.add(Rook.create(Color.BLACK, new Position("a8")));
 		rank.add(Knight.create(Color.BLACK, new Position("b8")));
 		rank.add(Bishop.create(Color.BLACK, new Position("c8")));
 		rank.add(Queen.create(Color.BLACK, new Position("d8")));
 		rank.add(King.create(Color.BLACK, new Position("e8")));
 		rank.add(Bishop.create(Color.BLACK, new Position("f8")));
 		rank.add(Knight.create(Color.BLACK, new Position("g8")));
-		rank.add(Rook.create(Color.BLACK,new Position("h8")));
+		rank.add(Rook.create(Color.BLACK, new Position("h8")));
 		return rank;
 	}
 
@@ -116,8 +116,8 @@ public class Rank {
 		return temps;
 	}
 
-	public void setBlank(int index) {
-		pieces.set(index, Blank.create());
+	public void setBlank(int x, int y) {
+		pieces.set(x, Blank.create(x, y));
 	}
 
 	public List<Piece> getPiece() {

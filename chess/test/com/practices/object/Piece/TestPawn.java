@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPawn {
 	private static Logger logger = LoggerFactory.getLogger(TestPawn.class);
@@ -56,11 +55,7 @@ public class TestPawn {
 
 	}
 
-	@Test
-	public void validDirection() {
-		board.create();
-		piece = board.findPiece("a2");
-		Piece target = board.findPiece("a4");
-		assertTrue(piece.validDirection(target));
-	}
+
+
+
 }

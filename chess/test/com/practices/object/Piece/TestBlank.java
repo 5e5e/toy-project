@@ -25,11 +25,5 @@ public class TestBlank {
 		assertEquals(blank, Blank.create(0,0));
 	}
 
-	@Test
-	void invalidDirection() {
-		board.createEmptyBoard();
-		blank = board.findPiece("a1");
-		Piece target  = board.findPiece("a2");
-		assertFalse(blank.validDirection(target));
-	}
+
 }

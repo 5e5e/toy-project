@@ -28,6 +28,16 @@ public class Position {
 
 	}
 
+	public Position(String position, Direction direction) {
+		this.x = convertX(position) + direction.getX();
+		this.y = convertY(position) + direction.getY();
+	}
+
+	public Position(Position next, Direction direction) {
+		this.x = next.x + direction.getX();
+		this.y = next.y + direction.getY();
+	}
+
 	private int convertY(String position) {
 		int y = Character.getNumericValue(position.charAt(1)) - 1;
 		if (!validY(y))

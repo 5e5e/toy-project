@@ -34,21 +34,4 @@ public class TestBishop {
 		assertEquals(piece, Bishop.create(Color.BLACK, new Position("f8")));
 	}
 
-	@Test
-	void validDirection() {
-		board.createEmptyBoard();
-		board.replacePiece(Bishop.create(Color.BLACK, new Position("a1")));
-		piece = board.findPiece("a1");
-		Piece target = board.findPiece("h8");
-		assertTrue(piece.validDirection(target));
-	}
-
-	@Test
-	void invalidDirection() {
-		board.createEmptyBoard();
-		board.replacePiece(Bishop.create(Color.BLACK, new Position("a1")));
-		piece = board.findPiece("a1");
-		Piece target = board.findPiece("a8");
-		assertFalse(piece.validDirection(target));
-	}
 }

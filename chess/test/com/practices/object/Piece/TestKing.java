@@ -34,11 +34,5 @@ public class TestKing {
 		assertEquals(piece, King.create(Color.BLACK, new Position("e8")));	}
 
 
-	@Test
-	public void validDirection() {
-		board.create();
-		piece = board.findPiece("e1");
-		Piece target = board.findPiece("e2");
-		assertTrue(piece.validDirection(target));
-	}
+
 }

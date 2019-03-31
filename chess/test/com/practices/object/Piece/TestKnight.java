@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestKnight {
 	private static final Logger logger = LoggerFactory.getLogger(TestKnight.class);
@@ -35,12 +34,5 @@ public class TestKnight {
 		board = new Board();
 	}
 
-	@Test
-	public void validDirection() {
-		board.create();
-		piece = board.findPiece("g1");
-		Piece target = board.findPiece("f3");
-		assertTrue(piece.validDirection(target));
 
-	}
 }

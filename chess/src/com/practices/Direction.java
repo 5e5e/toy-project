@@ -152,4 +152,12 @@ public enum Direction {
 			return new Position(finalX, finalY);
 		return null;
 	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
 }
