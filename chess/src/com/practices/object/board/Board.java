@@ -49,19 +49,28 @@ public class Board {
 		return rank.findPiece(x);
 	}
 
-	public void move(String departure, String arrive) {
+	public boolean move(String departure, String arrive, boolean turn) {
 		Piece departurePiece = findPiece(departure);
+		if (turn == true) {
+			if (!departurePiece.isWhite()) throw new IllegalArgumentException("흰색 차례입니다.");
+		} else if (turn == false) {
+			if (departurePiece.isWhite()) throw new IllegalArgumentException("검은색 턴 입니다.");
+		}
 		Piece arrivePiece = findPiece(arrive);
 		Direction direction = departurePiece.validDirection(arrivePiece);
 		Position next = new Position(departure, direction);
 		Piece nextPiece = findPiece(next);
-		while (true){
-			if (!nextPiece.isBlank()) throw new IllegalArgumentException();
-			if(nextPiece.samePosition(arrivePiece)) break;
+		while (true) {
+			if (!nextPiece.isBlank()) throw new IllegalArgumentException("빈칸이 아닌 곳으로 움직을수 없습니다.");
+			if (nextPiece.samePosition(arrivePiece)) break;
 			next = new Position(next, direction);
+			logger.debug("next : " +next);
+			nextPiece = findPiece(next);
 		}
 		setPiece(arrive, departurePiece);
 		setBlank(departure);
+		departurePiece.increaseMoveCount();
+		return !turn;
 	}
 
 	private Piece findPiece(Position next) {
@@ -74,7 +83,7 @@ public class Board {
 		int x = position.getX();
 		int y = position.getY();
 		Rank rank = ranks.get(y);
-		rank.setBlank(x,y);
+		rank.setBlank(x, y);
 	}
 
 	private void setPiece(String arrive, Piece departurePiece) {

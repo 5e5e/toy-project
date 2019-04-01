@@ -13,18 +13,18 @@ public class Main {
 		Board board = new Board();
 		Scanner scanner = new Scanner(System.in);
 		board.create();
-		board.toMap();
 		logger.debug(board.result());
 		String[] positions;
+		boolean turn = true;
 		while (true) {
 			logger.warn("이동할 곳을 입력하세요 :  ex) move a1 a2, end");
 			String command = scanner.nextLine();
 			if (command.startsWith("move")) {
 				positions = command.split(" ");
 				try {
-					board.move(positions[1], positions[2]);
+					turn = board.move(positions[1], positions[2], turn);
 				} catch (IllegalArgumentException e) {
-					logger.debug("목적지 까지 움직일 수 없습니다.");
+					logger.debug("" + e.getMessage());
 				}
 			} else if (command.startsWith("end")) break;
 			logger.debug(board.result());

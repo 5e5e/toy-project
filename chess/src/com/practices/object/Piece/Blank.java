@@ -11,7 +11,7 @@ public class Blank extends Piece {
 		super(Color.NO_COLOR, Type.BLANK);
 	}
 
-	public Blank(int x, int y) {
+	private Blank(int x, int y) {
 		super(Color.NO_COLOR, Type.BLANK, new Position(x, y), new HashMap<>());
 	}
 

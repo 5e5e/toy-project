@@ -64,24 +64,6 @@ public abstract class Piece {
 		return this.score;
 	}
 
-	public void locatePosition(String arrive) {
-		this.position.setPosition(arrive);
-	}
-
-//	public boolean move(Position position) {
-//		List<Position> positionList = Position.getPosition(color, type, this.position);
-//		for (Iterator<Position> it = positionList.iterator(); it.hasNext(); ) {
-//			Position value = it.next();
-//
-//			try {
-//				if (value.equals(null)) {
-//				}
-//			} catch (NullPointerException e) {
-//				it.remove();
-//			}
-//		}
-//		return positionList.contains(position);
-//	}
 
 	public Position getPosition() {
 		return position;
@@ -125,5 +107,13 @@ public abstract class Piece {
 
 	public boolean samePosition(Piece piece) {
 		return this.position.equals(piece.position);
+	}
+
+	public void increaseMoveCount() {
+		moveCount += 1;
+	}
+
+	protected int getMoveCount() {
+		return moveCount;
 	}
 }
